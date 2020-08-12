@@ -1,3 +1,20 @@
+@font-face {
+  font-family: "caviar_dreamsbold";
+  src: url("../fonts/caviar/Caviar_Dreams_Bold-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams_Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "caviar_dreams";
+  src: url("../fonts/caviar/CaviarDreams-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "forte";
+  src: url("../fonts/forte.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
 a {
   text-decoration: none; }
 
@@ -13,8 +30,160 @@ body, html {
   padding: 0px;
   margin: 0px; }
 
+body {
+  background: #0F0F10; }
+
 * {
   box-sizing: border-box;
   outline: 0; }
+
+.landing-container {
+  min-height: 100vh;
+  padding-top: 20px;
+  background-image: url("../img/header_bg.jpg");
+  background-size: cover;
+  background-position: center; }
+  .landing-container * {
+    position: relative;
+    z-index: 2; }
+  .landing-container::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7; }
+  .landing-container .top {
+    display: flex; }
+    .landing-container .top .left-side {
+      width: 300px;
+      flex-shrink: 0;
+      border-right: 1px rgba(255, 255, 255, 0.2) solid;
+      padding-bottom: 40px; }
+      .landing-container .top .left-side .logo {
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+        position: relative; }
+        .landing-container .top .left-side .logo::after {
+          content: "";
+          position: absolute;
+          bottom: -1px;
+          right: -30px;
+          width: 30px;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.2); }
+        .landing-container .top .left-side .logo img {
+          height: 150px; }
+      .landing-container .top .left-side ul li {
+        display: block;
+        text-align: left;
+        line-height: 50px;
+        border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+        padding: 0px 50px;
+        position: relative; }
+        .landing-container .top .left-side ul li::after {
+          content: "";
+          position: absolute;
+          bottom: -1px;
+          right: -30px;
+          width: 30px;
+          height: 1px;
+          background: rgba(255, 255, 255, 0.2); }
+        .landing-container .top .left-side ul li:last-child {
+          border-bottom: 0; }
+          .landing-container .top .left-side ul li:last-child::after {
+            display: none; }
+        .landing-container .top .left-side ul li a {
+          font-family: "caviar_dreamsbold";
+          color: #FFF;
+          font-size: 15px; }
+          .landing-container .top .left-side ul li a img {
+            margin-right: 5px;
+            vertical-align: middle;
+            width: 30px;
+            height: 30px; }
+    .landing-container .top .right-side {
+      width: 100%;
+      padding-right: 50px; }
+      .landing-container .top .right-side .top-menu {
+        display: flex;
+        padding: 0px 20px;
+        border-bottom: 1px rgba(255, 255, 255, 0.2) solid;
+        padding-bottom: 20px; }
+        .landing-container .top .right-side .top-menu ul.list {
+          width: 100%; }
+          .landing-container .top .right-side .top-menu ul.list li {
+            display: inline-block;
+            margin-right: 20px; }
+            .landing-container .top .right-side .top-menu ul.list li a {
+              display: inline-block;
+              color: #FFF;
+              font-family: "caviar_dreamsbold";
+              font-size: 13px; }
+              .landing-container .top .right-side .top-menu ul.list li a img {
+                vertical-align: middle; }
+        .landing-container .top .right-side .top-menu ul.lang {
+          flex-shrink: 0; }
+          .landing-container .top .right-side .top-menu ul.lang li {
+            display: inline-block; }
+            .landing-container .top .right-side .top-menu ul.lang li a {
+              display: inline-block;
+              font-size: 13px;
+              color: #FFF;
+              font-family: "caviar_dreamsbold"; }
+            .landing-container .top .right-side .top-menu ul.lang li.main {
+              position: relative; }
+              .landing-container .top .right-side .top-menu ul.lang li.main::after {
+                content: "";
+                position: absolute;
+                bottom: -21px;
+                right: -20px;
+                width: 50px;
+                height: 1px;
+                background: #FFF; }
+  .landing-container .content {
+    height: 500px;
+    margin-top: -41px;
+    display: flex; }
+    .landing-container .content .slide-container {
+      width: 600px;
+      flex-shrink: 0;
+      border: 1px rgba(255, 255, 255, 0.2) solid;
+      position: relative;
+      border-left: 0; }
+      .landing-container .content .slide-container::after {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -1px;
+        width: 1px;
+        height: 70px;
+        background: #FFF;
+        opacity: 0.2; }
+      .landing-container .content .slide-container::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: -40px;
+        width: 70px;
+        height: 1px;
+        background: #FFF;
+        opacity: 0.2; }
+    .landing-container .content .text {
+      width: 100%;
+      text-align: center;
+      font-family: "forte"; }
+      .landing-container .content .text h1 {
+        color: #FFFFFF;
+        font-size: 70px;
+        font-weight: normal; }
+      .landing-container .content .text p {
+        color: #FFF;
+        font-size: 20px; }
+        .landing-container .content .text p b {
+          color: #ECA929; }
 
 /*# sourceMappingURL=main.css.map */
