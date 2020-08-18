@@ -1,0 +1,132 @@
+@font-face {
+  font-family: "caviar_dreamsbold";
+  src: url("../fonts/caviar/Caviar_Dreams_Bold-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams_Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "caviar_dreams";
+  src: url("../fonts/caviar/CaviarDreams-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "forte";
+  src: url("../fonts/forte.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+.landing-container {
+  padding-bottom: 50px !important; }
+
+.products-container {
+  background: #342600; }
+
+.product-container {
+  padding: 50px 100px;
+  color: #FFF; }
+  .product-container .links {
+    display: block; }
+    .product-container .links li {
+      display: inline-block;
+      font-family: "caviar_dreamsbold";
+      font-size: 13px;
+      color: #B2B2B2;
+      position: relative; }
+      .product-container .links li::after {
+        content: "";
+        display: inline-block;
+        margin: 0px 10px;
+        width: 10px;
+        height: 1px;
+        vertical-align: middle;
+        background: #FFF; }
+      .product-container .links li:last-child::after {
+        display: none; }
+      .product-container .links li a {
+        text-decoration: underline;
+        color: #FFF; }
+  .product-container .wrapper {
+    max-width: 900px;
+    background: #FFF;
+    border-radius: 20px;
+    margin: 50px 0;
+    padding-bottom: 20px; }
+    .product-container .wrapper .product-infos {
+      display: flex; }
+      .product-container .wrapper .product-infos .img {
+        flex-shrink: 0;
+        width: 250px;
+        padding: 20px 0; }
+        .product-container .wrapper .product-infos .img img {
+          width: 250px; }
+      .product-container .wrapper .product-infos .text {
+        width: 100%;
+        padding: 20px;
+        font-family: "caviar_dreamsbold"; }
+        .product-container .wrapper .product-infos .text .share {
+          text-align: right;
+          margin-bottom: 20px; }
+          .product-container .wrapper .product-infos .text .share a {
+            display: inline-block;
+            margin: 0px 5px; }
+            .product-container .wrapper .product-infos .text .share a img {
+              vertical-align: middle; }
+        .product-container .wrapper .product-infos .text h1 {
+          color: #333333; }
+        .product-container .wrapper .product-infos .text h2 {
+          color: #ECA929; }
+        .product-container .wrapper .product-infos .text p {
+          color: #777777;
+          max-width: 520px;
+          margin: 20px 0; }
+    .product-container .wrapper .gallery-container p {
+      margin: 0px 50px;
+      position: relative; }
+      .product-container .wrapper .gallery-container p::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 0.5px;
+        background: rgba(178, 178, 178, 0.3); }
+      .product-container .wrapper .gallery-container p span {
+        color: #B2B2B2;
+        font-size: 13px;
+        font-family: "caviar_dreamsbold";
+        background: #FFF;
+        padding-right: 20px; }
+    .product-container .wrapper .gallery-container .slider-container {
+      position: relative; }
+      .product-container .wrapper .gallery-container .slider-container .button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        line-height: 40px;
+        width: 40px;
+        text-align: center;
+        border: 1px #333333 solid;
+        border-radius: 5px; }
+        .product-container .wrapper .gallery-container .slider-container .button img {
+          vertical-align: middle; }
+        .product-container .wrapper .gallery-container .slider-container .button.left {
+          left: 20px; }
+          .product-container .wrapper .gallery-container .slider-container .button.left img {
+            transform-origin: center;
+            transform: rotate(180deg); }
+        .product-container .wrapper .gallery-container .slider-container .button.right {
+          right: 20px; }
+      .product-container .wrapper .gallery-container .slider-container .slide {
+        display: flex;
+        justify-content: center;
+        background: #F9F9F9;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px; }
+        .product-container .wrapper .gallery-container .slider-container .slide img {
+          width: 200px; }
+
+/*# sourceMappingURL=product.css.map */

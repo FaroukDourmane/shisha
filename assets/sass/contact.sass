@@ -1,0 +1,115 @@
+// FONTS
+@font-face
+  font-family: "caviar_dreamsbold"
+  src: url('../fonts/caviar/Caviar_Dreams_Bold-webfont.woff') format('woff')
+  src: url('../fonts/caviar/CaviarDreams_Bold.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: "caviar_dreams"
+  src: url('../fonts/caviar/CaviarDreams-webfont.woff') format('woff')
+  src: url('../fonts/caviar/CaviarDreams.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+@font-face
+  font-family: "forte"
+  src: url('../fonts/forte.ttf') format('truetype')
+  font-weight: normal
+  font-style: normal
+
+$caviar_bold: 'caviar_dreamsbold'
+$caviar: 'caviar_dreams'
+$forte: 'forte'
+
+.contact-container
+  padding: 50px 100px
+  h1
+    font-family: $forte
+    color: #FFF
+    font-size: 50px
+  h5
+    color: #FFF
+    font-family: $forte
+    font-size: 20px
+    margin: 0
+  .wrapper
+    display: flex
+    padding: 50px 0px
+    .item
+      margin: 0px 20px
+      .whatsapp
+        display: block
+        line-height: 50px
+        text-align: center
+        width: 100%
+        color: #FFF
+        border: 1px #FFF solid
+        padding: 0px 20px
+        margin: 20px 0
+        border-radius: 30px
+        font-family: $caviar_bold
+        font-size: 13px
+        img
+          vertical-align: -2px
+          margin-right: 10px
+      .social
+        text-align: center
+        a
+          display: inline-block
+          margin: 0 10px
+          img
+            height: 30px
+      iframe
+        border-radius: 10px
+        margin: 20px 0
+      p
+        color: #FFF
+        font-family: $caviar
+        font-size: 20px
+      form
+        border: 1px #FFF solid
+        width: 300px
+        position: relative
+        &::after
+          content: ""
+          position: absolute
+          height: calc(100% + 40px)
+          top: -20px
+          left: -1px
+          width: 1px
+          background: #FFF
+        &::before
+          content: ""
+          position: absolute
+          height: calc(100% + 40px)
+          top: -20px
+          right: -1px
+          width: 1px
+          background: #FFF
+        input,textarea
+          display: block
+          width: 100%
+          max-width: 100%
+          min-width: 100%
+          border: 0
+          font-family: $caviar_bold
+          color: #FFF
+          background: transparent
+        input
+          line-height: 50px
+          padding: 0px 10px
+          border-bottom: 1px #FFF solid
+        button[type="submit"]
+          display: block
+          width: 100%
+          border: 0
+          font-family: $caviar_bold
+          background: #FFF
+          color: #333
+          cursor: pointer
+          line-height: 50px
+        textarea
+          height: 50px
+          padding: 10px

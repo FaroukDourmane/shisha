@@ -1,0 +1,109 @@
+@font-face {
+  font-family: "caviar_dreamsbold";
+  src: url("../fonts/caviar/Caviar_Dreams_Bold-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams_Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "caviar_dreams";
+  src: url("../fonts/caviar/CaviarDreams-webfont.woff") format("woff");
+  src: url("../fonts/caviar/CaviarDreams.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+@font-face {
+  font-family: "forte";
+  src: url("../fonts/forte.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+.contact-container {
+  padding: 50px 100px; }
+  .contact-container h1 {
+    font-family: "forte";
+    color: #FFF;
+    font-size: 50px; }
+  .contact-container h5 {
+    color: #FFF;
+    font-family: "forte";
+    font-size: 20px;
+    margin: 0; }
+  .contact-container .wrapper {
+    display: flex;
+    padding: 50px 0px; }
+    .contact-container .wrapper .item {
+      margin: 0px 20px; }
+      .contact-container .wrapper .item .whatsapp {
+        display: block;
+        line-height: 50px;
+        text-align: center;
+        width: 100%;
+        color: #FFF;
+        border: 1px #FFF solid;
+        padding: 0px 20px;
+        margin: 20px 0;
+        border-radius: 30px;
+        font-family: "caviar_dreamsbold";
+        font-size: 13px; }
+        .contact-container .wrapper .item .whatsapp img {
+          vertical-align: -2px;
+          margin-right: 10px; }
+      .contact-container .wrapper .item .social {
+        text-align: center; }
+        .contact-container .wrapper .item .social a {
+          display: inline-block;
+          margin: 0 10px; }
+          .contact-container .wrapper .item .social a img {
+            height: 30px; }
+      .contact-container .wrapper .item iframe {
+        border-radius: 10px;
+        margin: 20px 0; }
+      .contact-container .wrapper .item p {
+        color: #FFF;
+        font-family: "caviar_dreams";
+        font-size: 20px; }
+      .contact-container .wrapper .item form {
+        border: 1px #FFF solid;
+        width: 300px;
+        position: relative; }
+        .contact-container .wrapper .item form::after {
+          content: "";
+          position: absolute;
+          height: calc(100% + 40px);
+          top: -20px;
+          left: -1px;
+          width: 1px;
+          background: #FFF; }
+        .contact-container .wrapper .item form::before {
+          content: "";
+          position: absolute;
+          height: calc(100% + 40px);
+          top: -20px;
+          right: -1px;
+          width: 1px;
+          background: #FFF; }
+        .contact-container .wrapper .item form input, .contact-container .wrapper .item form textarea {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-width: 100%;
+          border: 0;
+          font-family: "caviar_dreamsbold";
+          color: #FFF;
+          background: transparent; }
+        .contact-container .wrapper .item form input {
+          line-height: 50px;
+          padding: 0px 10px;
+          border-bottom: 1px #FFF solid; }
+        .contact-container .wrapper .item form button[type="submit"] {
+          display: block;
+          width: 100%;
+          border: 0;
+          font-family: "caviar_dreamsbold";
+          background: #FFF;
+          color: #333;
+          cursor: pointer;
+          line-height: 50px; }
+        .contact-container .wrapper .item form textarea {
+          height: 50px;
+          padding: 10px; }
+
+/*# sourceMappingURL=contact.css.map */

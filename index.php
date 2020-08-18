@@ -1,79 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nara Jammo - hookah store</title>
-    <link rel="icon" href="assets/img/logo.ico"/>
-    <link rel="stylesheet" href="assets/css/main.css">
+<?php
+  $landing_bg = "background-image: url('assets/img/header_bg.jpg')";
+  $landing_content = '';
 
-  </head>
+  require_once("templates/header.php");
+?>
+<!--END Right side--></div>
+<!-- END Top --></div>
 
-  <body>
-    <!-- Landing container -->
-    <div class="landing-container">
-      <div class="top">
-        <div class="left-side">
-          <div class="logo">
-            <img src="assets/svg/logo2.svg" />
+<div class="content">
+<!-- END Landing container -->
+    <div class="slide-container">
+      <div class="wrapper">
+        <div class="item">
+          <div class="informations">
+            <span>Kefo Kozalak Nargile Takımı</span>
+            <h5>176,25 TL</h5>
           </div>
-
-          <ul>
-            <li> <a href="#"> <img src="assets/svg/home.svg" /> Home </a> </li>
-            <li> <a href="#"> <img src="assets/svg/hookah.svg" /> Products </a> </li>
-            <li> <a href="#"> <img src="assets/svg/question.svg" /> Who we are </a> </li>
-            <li> <a href="#"> <img src="assets/svg/contact.svg" /> Contact us </a> </li>
-          </ul>
-        </div>
-
-        <div class="right-side">
-          <div class="top-menu">
-            <ul class="list">
-              <li><a>+000 000 000 00</a></li>
-              <li><a href="#"> <img src="assets/svg/facebook.svg" /> </a></li>
-              <li><a href="#"> <img src="assets/svg/instagram.svg" /> </a></li>
-              <li><a href="#"> <img src="assets/svg/twitter.svg" /> </a></li>
-            </ul>
-
-            <ul class="lang">
-              <ul>
-                <li class="main">
-                  <a href="#" class="main">EN</a>
-                  <!-- <ul>
-                    <li> <a href="#"> TR </a> </li>
-                    <li> <a href="#"> AR </a> </li>
-                  </ul> -->
-                </li>
-              </ul>
-            </ul>
-          </div>
+          <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
         </div>
       </div>
-
-      <div class="content">
-        <div class="slide-container">
-          <div class="wrapper">
-            <div class="item">
-              <div class="informations">
-                <span>Kefo Kozalak Nargile Takımı</span>
-                <h5>176,25 TL</h5>
-              </div>
-              <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
-            </div>
-          </div>
-          <div class="buttons">
-            <a href="#" class="right"> <img src="assets/svg/right-chevron.svg" /> </a>
-            <a href="#" class="left"> <img src="assets/svg/left-chevron.svg" /> </a>
-          </div>
-        </div>
-
-        <div class="text">
-          <h1>Smoke with legacy</h1>
-          <p> <b>NaraJammo</b>, we provide the best</p>
-        </div>
+      <div class="buttons">
+        <a href="#" class="right"> <img src="assets/svg/right-chevron.svg" /> </a>
+        <a href="#" class="left"> <img src="assets/svg/left-chevron.svg" /> </a>
       </div>
     </div>
-    <!-- END Landing container -->
+
+    <div class="text">
+      <h1>Smoke with legacy</h1>
+      <p> <b>NaraJammo</b>, we provide the best</p>
+    </div>
+  <!-- Close content -->
+  </div>
+<!-- Close landing container -->
+</div>
 
     <!-- Our story -->
     <div class="story-container">
@@ -167,65 +126,4 @@
     </div>
     <!-- END Products -->
 
-
-    <!-- Footer -->
-    <div class="footer-container">
-      <div class="wrapper">
-        <div class="side">
-          <ul>
-            <li> <a href="#"> Home </a> </li>
-            <li> <a href="#"> Products </a> </li>
-            <li> <a href="#"> Who we are </a> </li>
-            <li> <a href="#"> Contact us </a> </li>
-          </ul>
-        </div>
-
-        <div class="side">
-          <ul>
-            <li> <a href="#"> Hookah supplies </a> </li>
-            <li> <a href="#"> Lances </a> </li>
-            <li> <a href="#"> Bottles </a> </li>
-            <li> <a href="#"> Steel hookah sets </a> </li>
-            <li> <a href="#"> Spare parts </a> </li>
-            <li> <a href="#"> Full hookah sets </a> </li>
-          </ul>
-        </div>
-
-        <div class="side">
-          <h5>Contact us</h5>
-          <p>email@email.com</p>
-          <p>0552 000 000 00</p>
-          <p>01 Street 520 New York City, USA</p>
-          <a href="#" class="whatsapp-btn"> <img src="assets/svg/whatsapp.svg" alt=""> Call us on whatsapp </a>
-        </div>
-
-        <div class="side">
-          <form class="" action="" method="post">
-            <input type="text" name="" value="" placeholder="Your name" required/>
-            <input type="email" name="" value="" placeholder="Your email" required/>
-            <textarea name="name" placeholder="Write a message" required></textarea>
-
-            <label>
-              <input type="submit" name="" value="" />
-              <a> <img src="assets/svg/right-arrow-black.svg" alt=""> </a>
-            </label>
-          </form>
-        </div>
-      </div>
-
-      <div class="copyrights">
-        <div class="rights">All rights reserved</div>
-        <div class="social">
-          <a href="#"> <img src="assets/svg/facebook.svg" /> </a>
-          <a href="#"> <img src="assets/svg/instagram.svg" /> </a>
-        </div>
-      </div>
-    </div>
-    <!-- END Footer -->
-  </body>
-
-  <footer>
-    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-  </footer>
-</html>
+<?php require_once("templates/footer.php"); ?>
