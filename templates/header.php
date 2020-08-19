@@ -26,7 +26,7 @@
           <ul>
             <li> <a href="index.php"> <img src="assets/svg/home.svg" /> Home </a> </li>
             <li> <a href="#"> <img src="assets/svg/hookah.svg" /> Products </a> </li>
-            <li> <a href="#"> <img src="assets/svg/question.svg" /> Search </a> </li>
+            <li> <a href="#"> <img src="assets/svg/question.svg" /> Who we are </a> </li>
             <li> <a href="contact.php"> <img src="assets/svg/contact.svg" /> Contact us </a> </li>
           </ul>
         </div>
