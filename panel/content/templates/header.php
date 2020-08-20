@@ -37,7 +37,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Radar - Dashboard</title>
+    <title>Dashboard</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="../admin/src/assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="../admin/src/assets/vendors/iconfonts/ionicons/css/ionicons.css">
@@ -146,15 +146,6 @@
               </div>
             </li>
             <!-- END General -->
-
-            <!-- Requests -->
-            <li class="nav-item">
-              <a class="nav-link" id="getAjaxPage" href="#companies">
-                <i class="menu-icon typcn typcn-document-text"></i>
-                <span class="menu-title"><?php __("companies"); ?></span>
-              </a>
-            </li>
-            <!-- END Requests -->
 
             <!-- Requests -->
             <li class="nav-item">
