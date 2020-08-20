@@ -128,19 +128,13 @@
                     <a class="nav-link" id="getAjaxPage" href="#login"><?php __("login_informations"); ?></a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" id="getAjaxPage" href="#slideshow"><?php __("slideshow"); ?></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="getAjaxPage" href="#contact"><?php __("contact"); ?></a>
+                    <a class="nav-link" id="getAjaxPage" href="#contact"><?php __("contact_map"); ?></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="getAjaxPage" href="#social"><?php __("social_media"); ?></a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" id="getAjaxPage" href="#about"><?php __("about_us"); ?></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="getAjaxPage" href="#catalog"><?php __("catalog"); ?></a>
                   </li>
                 </ul>
               </div>
@@ -152,6 +146,15 @@
               <a class="nav-link" id="getAjaxPage" href="#categories">
                 <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title"><?php __("categories"); ?></span>
+              </a>
+            </li>
+            <!-- END Requests -->
+
+            <!-- Requests -->
+            <li class="nav-item">
+              <a class="nav-link" id="getAjaxPage" href="#products">
+                <i class="menu-icon typcn typcn-document-text"></i>
+                <span class="menu-title"><?php __("products"); ?></span>
               </a>
             </li>
             <!-- END Requests -->

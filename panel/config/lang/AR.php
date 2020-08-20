@@ -25,6 +25,7 @@
     "general_settings" => "الإعدادات العامة",
     "login_informations" => "معلومات الدخول",
     "contact" => "معلومات الإتصال",
+    "contact_map" => "الإتصال و الخريطة",
     "social_media" => "التواصل الإجتماعي",
     "about_us" => "معلومات عنا",
     "catalog" => "كاتالوج",
@@ -162,9 +163,9 @@
     "email_required" => "يجب كتابة البريد الإلكتروني",
 
     "companies" => "الشركات",
-    "latest_registered_companies" => "آخر الشركات المسجلة",
-    "all_companies" => "كل الشركات",
-    "company_name" => "إسم الشركة",
+    "latest_added_products" => "آخر المنتجات",
+    "all_products" => "كل المنتجات",
+    "product_name" => "إسم المنتج",
     "registration_date" => "تاريخ التسجيل",
     "total" => "المجموع",
 
@@ -192,5 +193,27 @@
     "arabic" => "العربية",
     "english" => "الإنجليزية",
     "turkish" => "التركية",
+
+    "active_products" => "منتجات مفعلة",
+    "hidden_products" => "منتجات مخفية",
+
+    "active_category" => "أقسام مفعلة",
+    "hidden_category" => "أقسام مخفية",
+
+    "active_articles" => "مقالات مفعلة",
+    "hidden_articles" => " مقالات مخفية",
+
+    "twitter" => "تويتر",
+    "whatsapp" => "واتساب",
+
+    "map_code" => "كود الخريطة",
+    "how_to_google_map" => "طريقة الحصول على الكود من خرائط قوقل",
+
+    "media_how" => "هذا الفيديو أو الصورة ستظهر في صفحة `من نحن`",
+    "media_type" => "نوع الميديا",
+    "without_media" => "بدون ميديا",
+    "youtube_video" => "فيديو(يوتيو)",
+    "photo" => "صورة",
+    "video_id" => "رقم الفيديو",
   ];
 ?>

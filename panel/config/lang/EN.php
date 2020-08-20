@@ -25,6 +25,7 @@
     "general_settings" => "General settings",
     "login_informations" => "Login informations",
     "contact" => "Contact",
+    "contact_map" => "Contact & map",
     "social_media" => "social media",
     "about_us" => "About us",
     "catalog" => "Catalog",
@@ -163,9 +164,9 @@
     "email_required" => "The email cannot be empty",
 
     "companies" => "Companies",
-    "latest_registered_companies" => "Latest registered companies",
-    "all_companies" => "All companies",
-    "company_name" => "Company name",
+    "latest_added_products" => "Latest products",
+    "all_products" => "All products",
+    "product_name" => "Product name",
     "registration_date" => "Registration date",
     "total" => "Total",
 
@@ -193,5 +194,26 @@
     "arabic" => "Arabic",
     "english" => "English",
     "turkish" => "Turkish",
+
+    "active_products" => "Active products",
+    "hidden_products" => "Hidden products",
+
+    "active_category" => "Active categories",
+    "hidden_category" => "Hidden categories",
+
+    "active_articles" => "Active articles",
+    "hidden_articles" => "Hidden articles",
+
+    "twitter" => "Twitter",
+    "whatsapp" => "Whatsapp",
+    "map_code" => "Map code (html)",
+    "how_to_google_map" => "How to get google map code ?",
+
+    "media_how" => "This media (picture or video) will be shown in `about us` page",
+    "media_type" => "Media type",
+    "without_media" => "Without media",
+    "youtube_video" => "Video(youtube)",
+    "photo" => "Photo",
+    "video_id" => "Video id (youtube)",
   ];
 ?>

@@ -21,11 +21,6 @@ if ( !admin_logged() )
 // END : CHECK ADMIN AUTH
 // #################################################
 // #################################################
-
-$companies_q = $Q->query("SELECT * FROM `company` ORDER BY `id` ");
-$latest_companies = $Q->query("SELECT * FROM `company` ORDER BY `id` DESC LIMIT 10 ");
-$active_companies = $Q->query("SELECT * FROM `company` WHERE `status`='1' ");
-$hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
 ?>
 
         <div class="row page-title-header">
@@ -38,7 +33,7 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
           </div> -->
 
           <div class="col-12">
-            <h1 style="text-align: <?php __('align'); ?>"> <?php __("companies"); ?> </h1>
+            <h1 style="text-align: <?php __('align'); ?>"> <?php __("products"); ?> </h1>
           </div>
         </div>
 
@@ -52,7 +47,7 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
                   <div class="col">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold"><?php echo $companies_q->num_rows; ?></h3>
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
                         <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
                       </div>
                     </div>
@@ -70,16 +65,8 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
                   <div class="col-lg-4 col-md-6">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold"><?php echo $active_companies->num_rows; ?></h3>
-                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_companies"); ?></h5>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
-                    <div class="d-flex">
-                      <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold"><?php echo $hidden_companies->num_rows; ?></h3>
-                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_companies"); ?></h5>
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_products"); ?></h5>
                       </div>
                     </div>
                   </div>
@@ -87,11 +74,132 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
                     <div class="d-flex">
                       <div class="wrapper">
                         <h3 class="mb-0 font-weight-semibold">0</h3>
-                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("deleted_companies"); ?></h5>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_products"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="row page-title-header">
+          <!-- <div class="col-md-12">
+            <div class="page-header-toolbar">
+              <div class="sort-wrapper">
+                <button type="button" class="btn btn-primary toolbar-item">New</button>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-12">
+            <h1 style="text-align: <?php __('align'); ?>"> <?php __("categories"); ?> </h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
                       </div>
                     </div>
                   </div>
 
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_category"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_category"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <!-- BLOG -->
+        <div class="row page-title-header">
+          <!-- <div class="col-md-12">
+            <div class="page-header-toolbar">
+              <div class="sort-wrapper">
+                <button type="button" class="btn btn-primary toolbar-item">New</button>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="col-12">
+            <h1 style="text-align: <?php __('align'); ?>"> <?php __("blog"); ?> </h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-3 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-9 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-lg-4 col-md-6">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_articles"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_articles"); ?></h5>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -106,14 +214,14 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <h4 class="card-title mb-0"><?php __("latest_registered_companies"); ?></h4>
-                <a id="getAjaxPage" href="#companies" ><small><?php __("all_companies"); ?></small></a>
+                <h4 class="card-title mb-0"><?php __("latest_added_products"); ?></h4>
+                <a id="getAjaxPage" href="#products" ><small><?php __("all_products"); ?></small></a>
               </div>
               <div class="table-responsive">
                 <table class="table table-striped table-hover">
                   <thead>
                     <tr>
-                      <th><?php __("company_name"); ?></th>
+                      <th><?php __("product_name"); ?></th>
                       <th><?php __("category"); ?></th>
                       <th><?php __("registration_date"); ?></th>
                     </tr>
@@ -121,16 +229,13 @@ $hidden_companies = $Q->query("SELECT * FROM `company` WHERE `status`='0' ");
                   <tbody>
                   <?php
                   $lang_suffix = __("lang_suffix", true);
-
-                    if ( $latest_companies->num_rows > 0 ) {
-                      while ( $company = $latest_companies->fetch_assoc() ) {
                   ?>
                     <tr>
-                      <td> <a target="_blank" href="../../company.php?id=<?php echo $company["id"]; ?>"> <?php echo $company["name"]; ?> </a> </td>
-                      <td><?php echo category($company["category"], "name_$lang_suffix"); ?></td>
-                      <td><?php __("since"); echo " ".date_difference($company["added_date"]); ?></td>
+                      <td> <a target="_blank" href="#"> Product name </a> </td>
+                      <td><?php //echo category($company["category"], "name_$lang_suffix"); ?> Category name</td>
+                      <td><?php __("since"); //echo " ".date_difference($company["added_date"]); ?> 10 minutes</td>
                     </tr>
-                  <?php }} ?>
+
                   </tbody>
                 </table>
               </div>

@@ -3,8 +3,8 @@ require_once(__DIR__."/../../../config/config.php");
 require_once(__DIR__."/../../config/sessions.php");
 require_once(__DIR__."/../../config/".panel_lang_file());
 
-$query = $Q->query("SELECT * FROM `about` ");
-$fetch = $query->fetch_assoc();
+//$query = $Q->query("SELECT * FROM `about` ");
+//$fetch = $query->fetch_assoc();
 
 // #################################################
 // #################################################
@@ -34,76 +34,49 @@ if ( !admin_logged() )
                   <!-- Who we are -->
                   <div class="col-12 stretch-card">
                     <div class="card">
-                      <div class="card-body">
+                      <div class="card-body" style="direction:<?php __('dir'); ?>;text-align:<?php __('align'); ?>;">
 
                         <!-- Who we are -->
                         <h4 class="card-title"><?php __("who_we_are"); ?></h4>
                         <form class="forms-sample">
+
                           <div class="form-group row">
                             <div class="col-sm-9">
-                              <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
+                              <textarea type="text" class="summernote form-control generalAbout"> <?php //echo $fetch["about"]; ?> </textarea>
                             </div>
                           </div>
 
-                        <!-- Marketing & Export -->
-                        <h4 class="card-title"><?php __("marketing_export"); ?></h4>
+                          <h4 class="card-title"><?php __("media"); ?></h4>
+                          <p><?php __("media_how"); ?></p>
+
                           <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("media_type"); ?></label>
                             <div class="col-sm-9">
-                              <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
+                              <select class="custom-select" name="">
+                                <option value=""><?php __("without_media"); ?></option>
+                                <option value=""><?php __("youtube_video"); ?></option>
+                                <option value=""><?php __("photo"); ?></option>
+                              </select>
                             </div>
                           </div>
 
-                          <!-- About work -->
-                          <h4 class="card-title"><?php __("about_work"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
+                          <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("video_id"); ?></label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control panel_password emptyInput" id="exampleInputPassword2" placeholder="">
+                              <img src="../../assets/img/youtube_id.png" />
                             </div>
+                          </div>
 
-                          <!-- SERVICES -->
-                          <h4 class="card-title"><?php __("internal_shipping"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
+                          <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("photo"); ?></label>
+                            <div class="col-sm-9">
+                              <div class="custom-file" style="text-align:left;">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile"><?php __("choose_file"); ?></label>
                               </div>
                             </div>
-
-                          <h4 class="card-title"><?php __("packingـtoـothers"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
-                            </div>
-
-                          <h4 class="card-title"><?php __("preparing_papers"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
-                            </div>
-
-                          <h4 class="card-title"><?php __("reserve_shipment"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
-                            </div>
-
-                          <h4 class="card-title"><?php __("foreign_shipping_export"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
-                            </div>
-
-                          <h4 class="card-title"><?php __("after_shipment_service"); ?></h4>
-                            <div class="form-group row">
-                              <div class="col-sm-9">
-                                <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["about"]; ?> </textarea>
-                              </div>
-                            </div>
-                          <!-- END SERVICES -->
+                          </div>
 
                           <button type="submit" id="generalAbout" class="btn btn-success mr-2"><?php __("update_informations"); ?></button>
                           <input type="reset" class="btn btn-light" value="<?php __("reset"); ?>" />

@@ -211,3 +211,7 @@
   vertical-align: middle;
   max-height: 130px;
 }
+
+i.fas{
+  margin: 0 !important;
+}

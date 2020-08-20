@@ -27,51 +27,48 @@ $query = $Q->query("SELECT * FROM `social` ");
 <div class="content-wrapper">
   <div class="row">
 
-      <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
+    <!-- FORM -->
+    <div class="col-10 d-flex align-items-stretch grid-margin">
+      <div class="row flex-grow">
+        <!-- Email change -->
+        <div class="col-12 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title"><?php __("change_email"); ?></h4>
+              <form class="forms-sample">
+                <div class="form-group row">
+                  <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("facebook"); ?></label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control panel_email" value="" placeholder="https://facebook.com/YourAccount">
+                  </div>
+                </div>
 
-            <div class="col-12">
-              <a href="#addsocial" id="getAjaxPage" class="btn btn-success">
-                <i class="mdi mdi-plus"></i>
-                <?php __("add"); ?> </a>
-            </div>
+                <div class="form-group row">
+                  <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("twitter"); ?></label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control panel_email" value="" placeholder="https://twitter.com/YourAccount">
+                  </div>
+                </div>
 
-            <!-- Table -->
-            <table class="table table-striped table-responsive">
-              <thead>
-                <tr>
-                  <th> <?php __("name"); ?> </th>
-                  <th> <?php __("icon"); ?> </th>
-                  <th> <?php __("link"); ?> </th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
+                <div class="form-group row">
+                  <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("instagram"); ?></label>
+                  <div class="col-sm-9">
+                    <input type="url" class="form-control panel_email" value="" placeholder="https://instagram.com/YourAccount">
+                  </div>
+                </div>
 
-                <?php while ( $fetch = $query->fetch_assoc() ) { ?>
-                  <!-- Message -->
-                  <tr class="deletable <?php echo $fetch["id"]; ?>">
-                    <td class="py-1"> <?php echo $fetch["name"]; ?> </td>
-                    <td> <?php echo $fetch["icon"]; ?> </td>
-                    <td> <?php echo $fetch["url"]; ?> </td>
-                    <td>
-                      <a href="#" class="btn btn-success"> <?php __("edit"); ?> </a>
-                      <?php if ( $fetch["deletable"] ): ?>
-                        <a href="#" class="btn btn-danger deleteItem" id="deleteSocial" data-id="<?php echo $fetch["id"]; ?>"> <?php __("delete"); ?> </a>
-                      <?php endif; ?>
-                    </td>
-                  </tr>
-                <?php } ?>
-
-              </tbody>
-            </table>
-            <!-- END : Table -->
+                <button type="submit" id="changeEmail" class="btn btn-success mr-2"><?php __("update_informations"); ?></button>
+                <input type="reset" class="btn btn-light" value="<?php __("reset"); ?>" />
+              </form>
             </div>
           </div>
-
         </div>
+        <!-- END Email change -->
+      </div>
+    </div>
+    <!-- END FORM -->
   </div>
 </div>
+<!-- content-wrapper ends -->
 
 <input type="hidden" name="hiddenKey" value="<?php echo $_SESSION["_TOKEN"]; ?>" />
