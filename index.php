@@ -93,6 +93,7 @@
           <div class="wrapper">
             <?php for ($i=0; $i < 8; $i++) { ?>
             <div class="product">
+              <a href="#" class="link"></a>
               <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
               <h6>Kefo Kozalak Nargile Takımı</h6>
               <h6 class="price">176,25 TL</h6>
@@ -111,6 +112,7 @@
           <div class="wrapper">
             <?php for ($i=0; $i < 8; $i++) { ?>
             <div class="product">
+              <a href="#" class="link"></a>
               <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
               <h6>Kefo Kozalak Nargile Takımı</h6>
               <h6 class="price">176,25 TL</h6>

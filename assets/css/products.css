@@ -15,5 +15,54 @@
   src: url("../fonts/forte.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
+.landing-container {
+  background: #050505; }
+  .landing-container .content {
+    height: auto; }
+
+.products-container {
+  flex-direction: column;
+  padding: 50px; }
+  .products-container::after, .products-container::before {
+    display: none; }
+  .products-container .menu {
+    width: 100%;
+    margin-bottom: 50px; }
+    .products-container .menu ul {
+      display: flex;
+      border-right: 0;
+      justify-content: center; }
+      .products-container .menu ul li {
+        flex-shrink: 0; }
+        .products-container .menu ul li::after {
+          display: none; }
+  .products-container .content {
+    flex-direction: column; }
+  .products-container h1 {
+    color: #FFF;
+    font-family: "forte";
+    text-align: center; }
+  .products-container .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px auto; }
+    .products-container .pagination-container a {
+      line-height: 45px;
+      padding: 0px 10px;
+      text-align: center;
+      border: 2px #FFF solid;
+      border-radius: 20px;
+      color: #FFF;
+      font-family: "caviar_dreamsbold";
+      font-size: 15px;
+      margin: 0px 5px;
+      min-width: 45px;
+      opacity: 0.7; }
+      .products-container .pagination-container a:hover {
+        opacity: 1; }
+      .products-container .pagination-container a.active {
+        background: #FFF;
+        color: #0F0F10;
+        opacity: 1; }
 
 /*# sourceMappingURL=products.css.map */
