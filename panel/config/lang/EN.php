@@ -167,7 +167,7 @@
     "latest_added_products" => "Latest products",
     "all_products" => "All products",
     "product_name" => "Product name",
-    "registration_date" => "Registration date",
+    "registration_date" => "Added date",
     "total" => "Total",
 
     "active_companies" => "Active companies",
@@ -215,5 +215,10 @@
     "youtube_video" => "Video(youtube)",
     "photo" => "Photo",
     "video_id" => "Video id (youtube)",
+    "search" => "Search",
+    "status" => "Status",
+
+    "hidden" => "Hidden",
+    "active" => "Active",
   ];
 ?>

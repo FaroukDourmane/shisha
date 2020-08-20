@@ -166,7 +166,7 @@
     "latest_added_products" => "آخر المنتجات",
     "all_products" => "كل المنتجات",
     "product_name" => "إسم المنتج",
-    "registration_date" => "تاريخ التسجيل",
+    "registration_date" => "تاريخ الإضافة",
     "total" => "المجموع",
 
     "active_companies" => "شركات فعالة",
@@ -215,5 +215,10 @@
     "youtube_video" => "فيديو(يوتيو)",
     "photo" => "صورة",
     "video_id" => "رقم الفيديو",
+    "search" => "البحث",
+    "status" => "الحالة",
+
+    "hidden" => "غير مفعل",
+    "active" => "مفعل",
   ];
 ?>

@@ -83,7 +83,7 @@
                 </a>
                 <a href="?l=ar" class="dropdown-item">
                   <div class="flag-icon-holder">
-                    <i class="flag-icon flag-icon-ae"></i>
+                    <i class="flag-icon flag-icon-ps"></i>
                   </div>العربية
                 </a>
               </div>
@@ -159,25 +159,14 @@
             </li>
             <!-- END Requests -->
 
-            <!-- Blog -->
+            <!-- Requests -->
             <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#blog-settings" aria-expanded="false" aria-controls="ui-basic">
-                <i class="menu-icon typcn typcn-coffee"></i>
+              <a class="nav-link" id="getAjaxPage" href="#articles">
+                <i class="menu-icon typcn typcn-document-text"></i>
                 <span class="menu-title"><?php __("blog"); ?></span>
-                <i class="menu-arrow"></i>
               </a>
-              <div class="collapse" id="blog-settings">
-                <ul class="nav flex-column sub-menu">
-                  <li class="nav-item">
-                    <a class="nav-link" id="getAjaxPage" href="#newarticle"><?php __("new_article"); ?></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" id="getAjaxPage" href="#articles"><?php __("view_articles"); ?></a>
-                  </li>
-                </ul>
-              </div>
             </li>
-            <!-- END Blog -->
+            <!-- END Requests -->
 
           </ul>
         </nav>

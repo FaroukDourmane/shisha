@@ -88,6 +88,27 @@ if ( !admin_logged() )
               <div class="col-md-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
+
+                    <form class="form-inline mb-5 p-1 pl-3 pr-3" style="background:#f9f9f9;direction:<?php __('dir'); ?>;border-radius:10px;">
+                      <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><?php __("category"); ?></label>
+                      <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected><?php __("all"); ?></option>
+                        <option value="1">Category 1</option>
+                        <option value="2">Category 2</option>
+                        <option value="3">Category 3</option>
+                      </select>
+
+                      <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><?php __("status"); ?></label>
+                      <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option selected><?php __("all"); ?></option>
+                        <option value="1"><?php __("active"); ?></option>
+                        <option value="1"><?php __("hidden"); ?></option>
+                      </select>
+
+                      <button type="submit" class="btn btn-primary mr-3 ml-3"><?php __("search"); ?></button>
+                    </form>
+
+
                     <div class="table-responsive">
                       <table class="table table-striped table-hover">
                         <thead>
