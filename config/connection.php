@@ -24,7 +24,7 @@
   $HOST = "localhost";
   $USERNAME = "root";
   $PASS = "";
-  $DATABASE = "school";
+  $DATABASE = "shisha";
 
   $Q = new mysqli("$HOST", "$USERNAME", "$PASS", "$DATABASE");
 

@@ -74,6 +74,16 @@ if ( !admin_logged() )
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
+                    <div class="d-flex">
+                      <div class="wrapper">
+                        <a href="#newproduct" id="getAjaxPage" class="btn btn-success">
+                          <h3 class="mb-0 font-weight-semibold"><?php __("new_product"); ?></h3>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,7 +125,7 @@ if ( !admin_logged() )
                           <tr>
                             <th><?php __("product_name"); ?></th>
                             <th><?php __("category"); ?></th>
-                            <th><?php __("registration_date"); ?></th>
+                            <th> <a href="#"><?php __("registration_date"); ?> <i class="fas fa-sort"></i></a> </th>
                             <th><?php __("options"); ?></th>
                           </tr>
                         </thead>
@@ -124,15 +134,26 @@ if ( !admin_logged() )
                         $lang_suffix = __("lang_suffix", true);
                         ?>
                           <tr>
-                            <td> <a target="_blank" href="#"> Product name </a> </td>
+                            <td> <i class="circle disabled"></i> <a target="_blank" href="#"> Product name </a> </td>
                             <td><?php //echo category($company["category"], "name_$lang_suffix"); ?> Category name</td>
                             <td><?php __("since"); //echo " ".date_difference($company["added_date"]); ?> 10 minutes</td>
                             <td>
                               <a href="#" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a>
                               <a href="#" class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
+                              <a href="#" class="btn btn-success"><i class="fas fa-eye"></i></a>
                             </td>
                           </tr>
 
+                          <tr>
+                            <td> <i class="circle active"></i> <a target="_blank" href="#"> Product name </a> </td>
+                            <td><?php //echo category($company["category"], "name_$lang_suffix"); ?> Category name</td>
+                            <td><?php __("since"); //echo " ".date_difference($company["added_date"]); ?> 10 minutes</td>
+                            <td>
+                              <a href="#" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a>
+                              <a href="#" class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
+                              <a href="#" class="btn btn-outline-secondary"><i class="fas fa-eye-slash"></i></a>
+                            </td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>

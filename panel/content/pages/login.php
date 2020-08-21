@@ -37,7 +37,7 @@ $fetch = $query->fetch_assoc();
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("email"); ?></label>
                             <div class="col-sm-9">
-                              <input type="email" class="form-control panel_email" value="<?php echo $fetch["email"]; ?>" placeholder="<?php __("enter_email"); ?>">
+                              <input type="email" class="form-control panel_email" dir="ltr" value="<?php echo $fetch["email"]; ?>" placeholder="<?php __("enter_email"); ?>">
                             </div>
                           </div>
                           <div class="form-group row">

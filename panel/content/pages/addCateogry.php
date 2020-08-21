@@ -40,6 +40,29 @@ if ( !admin_logged() )
 
                         <h4 class="card-title"><?php __("new_category"); ?></h4>
                         <form class="forms-sample">
+
+                          <div class="form-group row">
+                            <label for="1" class="col-sm-3 col-form-label"><?php __("status"); ?></label>
+                            <div class="col-sm-9">
+                              <select class="custom-select" name="status">
+                                <option value="1" selected> <?php __("active") ?> </option>
+                                <option value="0"> <?php __("hidden") ?> </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="1" class="col-sm-3 col-form-label"><?php __("image"); ?></label>
+                            <div class="col-sm-9">
+                              <div class="input-group mb-3">
+                                <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
                           <!-- Title -->
                           <div class="form-group row">
                             <label for="1" class="col-sm-3 col-form-label"><?php __("title"); ?> (English)</label>

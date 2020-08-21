@@ -220,5 +220,7 @@
 
     "hidden" => "Hidden",
     "active" => "Active",
+
+    "image" => "Image",
   ];
 ?>

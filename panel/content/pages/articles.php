@@ -91,7 +91,6 @@ if ( isset($_SESSION["article_id"]) )
                           <a href="#newarticle" id="getAjaxPage" class="btn btn-success">
                             <h3 class="mb-0 font-weight-semibold"><?php __("new_article"); ?></h3>
                           </a>
-
                         </div>
                       </div>
                     </div>
@@ -110,14 +109,10 @@ if ( isset($_SESSION["article_id"]) )
                   <div class="card">
                     <div class="card-body">
 
-                      <form class="form-inline mb-5 p-1 pl-3 pr-3" style="background:#f9f9f9;direction:<?php __('dir'); ?>;border-radius:10px;">
-                        <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><?php __("category"); ?></label>
-                        <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                          <option selected><?php __("all"); ?></option>
-                          <option value="1">Category 1</option>
-                          <option value="2">Category 2</option>
-                          <option value="3">Category 3</option>
-                        </select>
+                      <form class="form-inline pl-3 pr-3" style="background:#f9f9f9;direction:<?php __('dir'); ?>;border-radius:10px;">
+                        <div class="input-group mr-3 ml-3">
+                          <input type="text" name="" class="form-control" value="" id="basic-url" aria-describedby="basic-addon3" placeholder="<?php __('title'); ?>" />
+                        </div>
 
                         <label class="my-1 mr-2" for="inlineFormCustomSelectPref"><?php __("status"); ?></label>
                         <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
@@ -135,7 +130,7 @@ if ( isset($_SESSION["article_id"]) )
                           <thead>
                             <tr>
                               <th><?php __("title"); ?></th>
-                              <th><?php __("registration_date"); ?></th>
+                              <th> <a href="#"><?php __("registration_date"); ?> <i class="fas fa-sort"></i></a> </th>
                               <th><?php __("options"); ?></th>
                             </tr>
                           </thead>
@@ -149,11 +144,12 @@ if ( isset($_SESSION["article_id"]) )
                                 $data_json = json_encode($data_json);
                               ?>
                             <tr class="deletable <?php echo $fetch["id"]; ?>">
-                              <td> <a target="_blank" href="#"> <?php echo trim_text($fetch["title"]); ?> </a> </td>
+                              <td> <a target="_blank" href="#"> <?php echo ($fetch["status"] == 1) ? '<i class="circle active"></i>' : '<i class="circle disabled"></i>';  ?> <?php echo trim_text($fetch["title"]); ?> </a> </td>
                               <td><?php __("since"); echo " ".date_difference($fetch["time"]); ?></td>
                               <td>
                                 <a class="btn btn-primary" id="getAjaxPage" data-json='<?php echo $data_json; ?>' role="button" href="#editArticle"><i class="fas fa-pen"></i></a>
                                 <a class="btn btn-danger deleteItem" id="deleteArticle" data-id="<?php echo $fetch["id"]; ?>" role="button" href="#"><i class="fas fa-trash-alt"></i></a>
+                                <?php echo ($fetch["status"] == 1) ? '<a href="#" class="btn btn-outline-secondary"><i class="fas fa-eye-slash"></i></a>' : '<a href="#" class="btn btn-success"><i class="fas fa-eye"></i></a>';  ?>
                               </td>
                             </tr>
                           <?php } ?>

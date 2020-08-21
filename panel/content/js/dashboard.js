@@ -1,6 +1,7 @@
 (function ($) {
   'use strict';
   $(function () {
+
     var lineStatsOptions = {
       scales: {
         yAxes: [{
