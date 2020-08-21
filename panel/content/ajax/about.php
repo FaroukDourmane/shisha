@@ -27,12 +27,33 @@
 
   if ( isset($_POST["action"]) && $_POST["action"] == "generalAbout" )
   {
+    $query = $Q->query("SELECT * FROM `about` ");
+    $fetch = $query->fetch_assoc();
+
     $about = trim(mysqli_real_escape_string($Q, $_POST["about"]));
+    $media_type = intval($_POST["media_type"]);
+    $youtubeId = mysqli_real_escape_string($Q, $_POST["youtubeId"]);
+
+    $path = "../../../assets/img/about/";
+    $photo = upload("photo",$path,"images");
+
     $type = "error";
 
-    $update = $Q->query("UPDATE `general` SET `about`='$about' ");
+    $update = $Q->query("UPDATE `about` SET `text`='$about',`media_type`='$media_type',`video_id`='$youtubeId' ");
+
     if ( $update )
     {
+      if ( $photo )
+      {
+        $old_photo = $fetch["photo"];
+        if (!empty(trim($old_photo))){
+          $old_path = "../../../".$old_photo;
+          delete_file($old_path);
+        }
+
+        $sql_path = "assets/img/about/$photo";
+        $update_photo = $Q->query("UPDATE `about` SET `photo`='$sql_path' ");
+      }
       $type = "success";
       $text = __("update_success",true);
     }else {

@@ -222,5 +222,8 @@
     "active" => "Active",
 
     "image" => "Image",
+
+    "snapchat" => "Snapchat",
+    "username" => "Username",
   ];
 ?>

@@ -10,7 +10,6 @@ $(document).ready(function(){
       "changePasswrod": "ajax/login.php",
       "changeContact": "ajax/contact.php",
       "generalAbout": "ajax/about.php",
-      "addSocial": "ajax/addSocial.php",
       "uploadCatalog": "ajax/uploadCatalog.php",
       "addCategory": "ajax/addCategory.php",
       "editCategory": "ajax/editCategory.php",
@@ -19,6 +18,7 @@ $(document).ready(function(){
       "addMedia": "ajax/addMedia.php",
       "addAdmin": "ajax/addAdmin.php",
       "editAdmin": "ajax/editAdmin.php",
+      "ediSocial": "ajax/ediSocial.php",
     };
 
     var action = $(this).attr("id");
@@ -63,6 +63,20 @@ $(document).ready(function(){
         data.panel_password = panel_password;
       }
 
+      // Edit social media
+      if ( data.action == "ediSocial" ) {
+        var facebook = $(".socialFacebook").val();
+        var twitter = $(".socialTwitter").val();
+        var instagram = $(".socialInstagram").val();
+        var snapchat = $(".socialSnapchat").val();
+
+        data.facebook = facebook;
+        data.twitter = twitter;
+        data.instagram = instagram;
+        data.snapchat = snapchat;
+      }
+
+
       // EDIT CATEGORY
       if ( data.action == "editCategory" )
       {
@@ -86,10 +100,16 @@ $(document).ready(function(){
 
       if ( data.action == "addCategory" )
       {
+        var photo = $('input[name="categoryPhoto"]').prop('files')[0];
+        var status = $(".categoryStatus :selected").val();
+
         var name_en = $(".name_en").val();
         var name_ar = $(".name_ar").val();
         var name_tr = $(".name_tr").val();
         var name_fr = $(".name_fr").val();
+
+        data.photo = photo;
+        data.status = status;
 
         data.name_en = name_en;
         data.name_ar = name_ar;
@@ -116,29 +136,30 @@ $(document).ready(function(){
         var cellphone = $('.contactCellphone').val();
         var address = $('.contactAddress').val();
 
+        var whatsapp = $('.contactWhatsapp').val();
+        var map = $('.mapCode').val();
+
         data.email = email;
         data.phone = phone;
         data.cellphone = cellphone;
         data.address = address;
+
+        data.whatsapp = whatsapp;
+        data.map = map;
       }
 
       if ( data.action == "generalAbout" )
       {
 
         var about = $('.summernote').summernote('code');
-        //var about = $(".generalAbout").val();
+        var media_type = $(".media_type :selected").val();
+        var youtubeId = $(".youtubeId").val();
+        var photo = $('input[name="photoFile"]').prop('files')[0];
+
         data.about = about;
-      }
-
-      if ( data.action == "addSocial" )
-      {
-        var socialName = $(".socialName").val();
-        var socialIcon = $(".socialIcon").val();
-        var socialLink = $(".socialLink").val();
-
-        data.name = socialName;
-        data.icon = socialIcon;
-        data.link = socialLink;
+        data.media_type = media_type;
+        data.youtubeId = youtubeId;
+        data.photo = photo;
       }
 
       $(".ajaxContainer").addClass("loading");
@@ -164,7 +185,6 @@ $(document).ready(function(){
   $(document).on("click",".deleteItem",function(){
 
     var actions = {
-      "deleteSocial": "ajax/delete.php",
       "deleteArticle": "ajax/delete.php",
       "deleteCategory": "ajax/delete.php",
       "deleteProduct": "ajax/delete.php",

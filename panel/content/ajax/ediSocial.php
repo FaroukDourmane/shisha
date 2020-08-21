@@ -25,15 +25,17 @@
   // #################################################
   // #################################################
 
-  if ( isset($_POST["action"]) && $_POST["action"] == "addSocial" )
+  if ( isset($_POST["action"]) && $_POST["action"] == "editSocial" )
   {
-    $name = trim(mysqli_real_escape_string($Q, $_POST["name"]));
-    $icon = trim(mysqli_real_escape_string($Q, $_POST["icon"]));
-    $link = trim(mysqli_real_escape_string($Q, $_POST["link"]));
+    $facebook = trim(mysqli_real_escape_string($Q, $_POST["facebook"]));
+    $twitter = trim(mysqli_real_escape_string($Q, $_POST["twitter"]));
+    $instagram = trim(mysqli_real_escape_string($Q, $_POST["instagram"]));
+    $snapchat = trim(mysqli_real_escape_string($Q, $_POST["snapchat"]));
+
     $type = "error";
 
-    $add = $Q->query("INSERT INTO `social` (`name`,`url`,`icon`,`deletable`) VALUES ('$name','$link','$icon',1) ");
-    if ( $add )
+    $update = $Q->query("UPDATE `general` SET `facebook`='$facebook',`twitter`='$twitter',`instagram`='$instagram',`snapchat`='$snapchat' ");
+    if ( $update )
     {
       $type = "success";
       $text = __("update_success",true);

@@ -21,6 +21,9 @@ if ( !admin_logged() )
 // END : CHECK ADMIN AUTH
 // #################################################
 // #################################################
+
+$query = $Q->query("SELECT * FROM `about` ");
+$fetch = $query->fetch_assoc();
 ?>
     <!-- include libraries(jQuery, bootstrap) -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
@@ -42,7 +45,7 @@ if ( !admin_logged() )
 
                           <div class="form-group row">
                             <div class="col-sm-9">
-                              <textarea type="text" class="summernote form-control generalAbout"> <?php //echo $fetch["about"]; ?> </textarea>
+                              <textarea type="text" class="summernote form-control generalAbout"> <?php echo $fetch["text"]; ?> </textarea>
                             </div>
                           </div>
 
@@ -52,10 +55,10 @@ if ( !admin_logged() )
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("media_type"); ?></label>
                             <div class="col-sm-9">
-                              <select class="custom-select" name="">
-                                <option value=""><?php __("without_media"); ?></option>
-                                <option value=""><?php __("youtube_video"); ?></option>
-                                <option value=""><?php __("photo"); ?></option>
+                              <select class="custom-select media_type">
+                                <option value="0" <?php echo ($fetch["media_type"] == 0) ? "selected" : ""; ?>><?php __("without_media"); ?></option>
+                                <option value="1" <?php echo ($fetch["media_type"] == 1) ? "selected" : ""; ?>><?php __("youtube_video"); ?></option>
+                                <option value="2" <?php echo ($fetch["media_type"] == 2) ? "selected" : ""; ?>><?php __("photo"); ?></option>
                               </select>
                             </div>
                           </div>
@@ -63,7 +66,7 @@ if ( !admin_logged() )
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("video_id"); ?></label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control panel_password emptyInput" id="exampleInputPassword2" placeholder="">
+                              <input type="text" class="form-control youtubeId emptyInput" id="exampleInputPassword2" placeholder="">
                               <img src="../../assets/img/youtube_id.png" />
                             </div>
                           </div>
@@ -72,7 +75,7 @@ if ( !admin_logged() )
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("photo"); ?></label>
                             <div class="col-sm-9">
                               <div class="custom-file" style="text-align:left;">
-                                <input type="file" class="custom-file-input" id="customFile">
+                                <input type="file" class="custom-file-input" id="customFile" name="photoFile">
                                 <label class="custom-file-label" for="customFile"><?php __("choose_file"); ?></label>
                               </div>
                             </div>

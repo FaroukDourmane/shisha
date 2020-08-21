@@ -38,13 +38,13 @@ if ( !admin_logged() )
                           </div>
                         </div>
 
-                        <h4 class="card-title"><?php __("new_category"); ?></h4>
+                        <h4 class="mt-4 mb-4"><?php __("new_category"); ?></h4>
                         <form class="forms-sample">
 
                           <div class="form-group row">
                             <label for="1" class="col-sm-3 col-form-label"><?php __("status"); ?></label>
                             <div class="col-sm-9">
-                              <select class="custom-select" name="status">
+                              <select class="custom-select categoryStatus" name="status">
                                 <option value="1" selected> <?php __("active") ?> </option>
                                 <option value="0"> <?php __("hidden") ?> </option>
                               </select>
@@ -56,8 +56,8 @@ if ( !admin_logged() )
                             <div class="col-sm-9">
                               <div class="input-group mb-3">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
-                                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                  <input type="file" class="custom-file-input" name="categoryPhoto" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                  <label class="custom-file-label" for="inputGroupFile01"><?php __("choose_file"); ?></label>
                                 </div>
                               </div>
                             </div>

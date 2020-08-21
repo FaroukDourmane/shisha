@@ -19,8 +19,8 @@ if ( !admin_logged() )
 // #################################################
 // #################################################
 
-//$query = $Q->query("SELECT * FROM `contact` ");
-//$fetch = $qery->fetch_assoc();
+$query = $Q->query("SELECT * FROM `general` ");
+$fetch = $query->fetch_assoc();
 ?>
           <div class="content-wrapper">
             <div class="row">
@@ -37,42 +37,42 @@ if ( !admin_logged() )
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("contact_email"); ?></label>
                             <div class="col-sm-9">
-                              <input type="email" class="form-control contactEmail" id="exampleInputEmail2" value="<?php //echo $fetch["email"]; ?>" placeholder="<?php __("enter_email"); ?>">
-                            </div>
-                          </div>
-
-                          <div class="form-group row">
-                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("whatsapp"); ?></label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control contactPhone" id="exampleInputPassword2" value="<?php //echo $fetch["phone"]; ?>" placeholder="Ex:+900000000000">
+                              <input type="email" class="form-control contactEmail" id="exampleInputEmail2" value="<?php  echo $fetch["email"]; ?>" placeholder="<?php __("enter_email"); ?>">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("phone"); ?></label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control contactPhone" id="exampleInputPassword2" value="<?php //echo $fetch["phone"]; ?>" placeholder="Ex:+900000000000">
+                              <input type="text" class="form-control contactPhone" id="exampleInputPassword2" value="<?php echo $fetch["phone"]; ?>" placeholder="Ex:+900000000000">
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("whatsapp"); ?></label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control contactWhatsapp" id="exampleInputPassword2" value="<?php echo $fetch["whatsapp"]; ?>" placeholder="Ex:+900000000000">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("cellphone"); ?></label>
                             <div class="col-sm-9">
-                              <input type="text" class="form-control contactCellphone" id="exampleInputPassword2" value="<?php //echo $fetch["cellphone"]; ?>" placeholder="Ex:+900000000000">
+                              <input type="text" class="form-control contactCellphone" id="exampleInputPassword2" value="<?php echo $fetch["cellphone"]; ?>" placeholder="Ex:+900000000000">
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("address"); ?></label>
                             <div class="col-sm-9">
-                              <textarea class="form-control contactAddress" id="exampleInputPassword2"> <?php //echo $fetch["address"]; ?> </textarea>
+                              <textarea class="form-control contactAddress" id="exampleInputPassword2"> <?php echo $fetch["address"]; ?> </textarea>
                             </div>
                           </div>
 
                           <div class="form-group row">
                             <label for="exampleInputPassword2" class="col-sm-3 col-form-label"><?php __("map_code"); ?></label>
                             <div class="col-sm-9">
-                              <textarea class="form-control contactAddress" id="exampleInputPassword2"> <?php //echo $fetch["address"]; ?> </textarea>
+                              <textarea class="form-control mapCode" id="exampleInputPassword2"> <?php echo $fetch["map_code"]; ?> </textarea>
                               <a href="https://support.google.com/maps/answer/144361?co=GENIE.Platform%3DDesktop&hl=<?php __("lang_suffix"); ?>" target="_blank"><?php __("how_to_google_map"); ?></a>
                             </div>
                           </div>

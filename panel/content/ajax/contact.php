@@ -32,9 +32,12 @@
     $cellphone = trim(mysqli_real_escape_string($Q, $_POST["cellphone"]));
     $address = trim(mysqli_real_escape_string($Q, $_POST["address"]));
 
+    $whatsapp = trim(mysqli_real_escape_string($Q, $_POST["whatsapp"]));
+    $map = trim(mysqli_real_escape_string($Q, $_POST["map"]));
+
     $type = "error";
 
-    $update = $Q->query("UPDATE `contact` SET `email`='$email',`phone`='$phone',`cellphone`='$cellphone',`address`='$address' ");
+    $update = $Q->query("UPDATE `contact` SET `email`='$email',`phone`='$phone',`cellphone`='$cellphone',`address`='$address',`map_code`='$map',`whatsapp`='$whatsapp' ");
     if ( $update )
     {
       $type = "success";

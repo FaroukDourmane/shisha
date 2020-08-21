@@ -19,7 +19,8 @@ if ( !admin_logged() )
 // #################################################
 // #################################################
 
-$query = $Q->query("SELECT * FROM `social` ");
+$query = $Q->query("SELECT * FROM `general` ");
+$fetch = $query->fetch_assoc();
 ?>
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css" href="../../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -39,25 +40,32 @@ $query = $Q->query("SELECT * FROM `social` ");
                 <div class="form-group row">
                   <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("facebook"); ?></label>
                   <div class="col-sm-9">
-                    <input type="url" class="form-control panel_email" value="" placeholder="https://facebook.com/YourAccount">
+                    <input type="url" class="form-control socialFacebook" value="<?php echo $fetch["facebook"]; ?>" placeholder="https://facebook.com/YourAccount">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("twitter"); ?></label>
                   <div class="col-sm-9">
-                    <input type="url" class="form-control panel_email" value="" placeholder="https://twitter.com/YourAccount">
+                    <input type="url" class="form-control socialTwitter" value="<?php echo $fetch["twitter"]; ?>" placeholder="https://twitter.com/YourAccount">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("instagram"); ?></label>
                   <div class="col-sm-9">
-                    <input type="url" class="form-control panel_email" value="" placeholder="https://instagram.com/YourAccount">
+                    <input type="url" class="form-control socialInstagram" value="<?php echo $fetch["instagram"]; ?>" placeholder="https://instagram.com/YourAccount">
                   </div>
                 </div>
 
-                <button type="submit" id="changeEmail" class="btn btn-success mr-2"><?php __("update_informations"); ?></button>
+                <div class="form-group row">
+                  <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("snapchat"); ?></label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control socialSnapchat" value="<?php echo $fetch["snapchat"]; ?>" placeholder="<?php __("username"); ?>">
+                  </div>
+                </div>
+
+                <button type="submit" id="ediSocial" class="btn btn-success mr-2"><?php __("update_informations"); ?></button>
                 <input type="reset" class="btn btn-light" value="<?php __("reset"); ?>" />
               </form>
             </div>
