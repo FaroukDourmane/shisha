@@ -27,14 +27,24 @@
 
   if ( isset($_POST["action"]) && $_POST["action"] == "addCategory" )
   {
+    $status = intval($_POST["status"]);
     $name_en = trim(mysqli_real_escape_string($Q, $_POST["name_en"]));
     $name_ar = trim(mysqli_real_escape_string($Q, $_POST["name_ar"]));
     $name_tr = trim(mysqli_real_escape_string($Q, $_POST["name_tr"]));
     $type = "error";
 
-    $add = $Q->query("INSERT INTO `categories` (`name`,`name_tr`,`name_ar`) VALUES ('$name_en','$name_tr','$name_ar') ");
+    $add = $Q->query("INSERT INTO `categories` (`name_en`,`name_tr`,`name_ar`,`status`) VALUES ('$name_en','$name_tr','$name_ar','$status') ");
     if ( $add )
     {
+      $last_id = $Q->insert_id;
+      $path = "../../../assets/categories/$last_id/";
+      $photo = upload("photo",$path,"images");
+
+      if ($photo){
+        $sql_path = "assets/categories/$last_id/$photo";
+        $update = $Q->query("UPDATE `categories` SET `image_path`='$sql_path' WHERE `id`='$last_id' ");
+      }
+
       $type = "success";
       $text = __("update_success",true);
     }else {
