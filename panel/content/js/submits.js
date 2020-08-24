@@ -11,8 +11,6 @@ $(document).ready(function(){
       "changeContact": "ajax/contact.php",
       "generalAbout": "ajax/about.php",
       "uploadCatalog": "ajax/uploadCatalog.php",
-      "addCategory": "ajax/addCategory.php",
-      "editCategory": "ajax/editCategory.php",
       "addProduct": "ajax/addProduct.php",
       "editProduct": "ajax/editProduct.php",
       "addMedia": "ajax/addMedia.php",
@@ -76,45 +74,11 @@ $(document).ready(function(){
         data.snapchat = snapchat;
       }
 
-
-      // EDIT CATEGORY
-      if ( data.action == "editCategory" )
-      {
-        var name_en = $(".name_en").val();
-        var name_ar = $(".name_ar").val();
-        var name_tr = $(".name_tr").val();
-        var name_fr = $(".name_fr").val();
-
-        data.name_en = name_en;
-        data.name_ar = name_ar;
-        data.name_tr = name_tr;
-        data.name_fr = name_fr;
-      }
-
       // EDIT CATEGORY
       if ( data.action == "addMedia" )
       {
         var source = $(".source").val();
         data.source = source;
-      }
-
-      if ( data.action == "addCategory" )
-      {
-        var photo = $('input[name="categoryPhoto"]').prop('files')[0];
-        var status = $(".categoryStatus :selected").val();
-
-        var name_en = $(".name_en").val();
-        var name_ar = $(".name_ar").val();
-        var name_tr = $(".name_tr").val();
-        var name_fr = $(".name_fr").val();
-
-        data.photo = photo;
-        data.status = status;
-
-        data.name_en = name_en;
-        data.name_ar = name_ar;
-        data.name_tr = name_tr;
-        data.name_fr = name_fr;
       }
 
       // CHANGE PASSWORD
@@ -220,6 +184,111 @@ $(document).ready(function(){
       });
     }
   });
+
+
+// Add a category
+$(document).on("click",".addCategory",function(e){
+  e.preventDefault();
+    var photo = $('input[name="categoryPhoto"]').prop('files')[0];
+    var status = $(".categoryStatus :selected").val();
+
+    var name_en = $(".name_en").val();
+    var name_ar = $(".name_ar").val();
+    var name_tr = $(".name_tr").val();
+    //var name_fr = $(".name_fr").val();
+
+    var form_data = new FormData();
+
+    form_data.append('photo', photo);
+    form_data.append('status', status);
+
+    form_data.append('name_en', name_en);
+    form_data.append('name_ar', name_ar);
+    form_data.append('name_tr', name_tr);
+
+    form_data.append('action', "addCategory");
+
+    $.ajax({
+        url: 'ajax/addCategory.php',
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(response){
+          response = $.parseJSON(response);
+
+          pushNotification(response.text,response.type);
+
+          if ( response.type == "success" ) {
+            location.hash = "#categories";
+            var pages = {
+              "#categories": "pages/categories.php",
+            }
+            initialize_page(pages);
+
+          }
+
+          $(".ajaxContainer").removeClass("loading");
+          $(".loadingContainer").removeClass("active");
+
+        }
+     });
+});
+// END Adding a category
+
+// Edit a category
+$(document).on("click",".editCategory",function(e){
+  e.preventDefault();
+    var photo = $('input[name="categoryPhoto"]').prop('files')[0];
+    var status = $(".categoryStatus :selected").val();
+
+    var name_en = $(".name_en").val();
+    var name_ar = $(".name_ar").val();
+    var name_tr = $(".name_tr").val();
+    //var name_fr = $(".name_fr").val();
+
+    var form_data = new FormData();
+
+    form_data.append('photo', photo);
+    form_data.append('status', status);
+
+    form_data.append('name_en', name_en);
+    form_data.append('name_ar', name_ar);
+    form_data.append('name_tr', name_tr);
+
+    form_data.append('action', "editCategory");
+
+    $.ajax({
+        url: 'ajax/editCategory.php',
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(response){
+          response = $.parseJSON(response);
+
+          pushNotification(response.text,response.type);
+
+          if ( response.type == "success" ) {
+            location.hash = "#categories";
+            var pages = {
+              "#categories": "pages/categories.php",
+            }
+            initialize_page(pages);
+
+          }
+
+          $(".ajaxContainer").removeClass("loading");
+          $(".loadingContainer").removeClass("active");
+
+        }
+     });
+});
+// END editing a category
 
 
   // ADD NEW PRODUCT

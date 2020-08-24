@@ -39,7 +39,7 @@ if ( !admin_logged() )
                         </div>
 
                         <h4 class="mt-4 mb-4"><?php __("new_category"); ?></h4>
-                        <form class="forms-sample">
+                        <form>
 
                           <div class="form-group row">
                             <label for="1" class="col-sm-3 col-form-label"><?php __("status"); ?></label>
@@ -67,7 +67,7 @@ if ( !admin_logged() )
                           <div class="form-group row">
                             <label for="1" class="col-sm-3 col-form-label"><?php __("title"); ?> (English)</label>
                             <div class="col-sm-9">
-                              <input dir="ltr" type="text" class="form-control emptyInput name_en" id="1" placeholder="<?php __("enter_title"); ?>">
+                              <input dir="ltr" type="text" class="form-control emptyInput name_en" id="1" placeholder="<?php __("enter_title"); ?>" required />
                             </div>
                           </div>
 
@@ -85,7 +85,7 @@ if ( !admin_logged() )
                             </div>
                           </div>
 
-                          <button type="submit" id="addCategory" class="btn btn-success mr-2"><?php __("add_category"); ?></button>
+                          <button type="submit" id="addCategory" class="btn btn-success mr-2 addCategory"><?php __("add_category"); ?></button>
                         </form>
                       </div>
                     </div>

@@ -303,3 +303,28 @@ i.fas{
 
 .circle.active {background:#43EB7B;}
 .circle.disabled {background:#FF5858;}
+
+.upload-container
+{
+  display: block;
+  height: 100px;
+  line-height: 100px;
+  width: 100%;
+  text-align: center;
+  background: #f9f9f9;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 1px #f1f1f1 solid;
+  border-radius: 5px;  
+}
+
+.upload-container a {
+  font-size: 25px !important;
+  color: #777 !important;
+  font-weight: 700;
+  font-family: 'cairo';
+}
+
+.upload-container:hover {
+  background: #f1f1f1;
+}

@@ -64,30 +64,57 @@ $fetch = $query->fetch_assoc();
                 </div>
               </div>
 
-              <form class="forms-sample">
+              <form>
+
+                <div class="form-group row">
+                  <label for="1" class="col-sm-3 col-form-label"><?php __("status"); ?></label>
+                  <div class="col-sm-9">
+                    <select class="custom-select categoryStatus" name="status">
+                      <option value="1" <?php echo ($fetch["status"] == 1) ? "selected" : ""; ?>> <?php __("active") ?> </option>
+                      <option value="0" <?php echo ($fetch["status"] == 0) ? "selected" : ""; ?>> <?php __("hidden") ?> </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="1" class="col-sm-3 col-form-label"><?php __("image"); ?></label>
+
+                  <div class="col-sm-7">
+                    <div class="input-group mb-3">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="categoryPhoto" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                        <label class="custom-file-label" for="inputGroupFile01"><?php __("choose_file"); ?></label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <img src="../../<?php echo $fetch["image_path"]; ?>" width="100px" />
+                  </div>
+                </div>
+
                 <!-- Title -->
                 <div class="form-group row">
                   <label for="1" class="col-sm-3 col-form-label"><?php __("title"); ?> (English)</label>
                   <div class="col-sm-9">
-                    <input dir="ltr" type="text" class="form-control name_en" id="1" value="<?php echo $fetch["name"]; ?>" placeholder="<?php __("enter_title"); ?>">
+                    <input dir="ltr" type="text" class="form-control emptyInput name_en" value="<?php echo $fetch["name_en"]; ?>" id="1" placeholder="<?php __("enter_title"); ?>" required />
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="12" class="col-sm-3 col-form-label"><?php __("title"); ?> (العربية)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control name_ar" id="12" value="<?php echo $fetch["name_ar"]; ?>" placeholder="<?php __("enter_title"); ?>">
+                    <input type="text" class="form-control emptyInput name_ar" value="<?php echo $fetch["name_ar"]; ?>" id="12" placeholder="<?php __("enter_title"); ?>">
                   </div>
                 </div>
 
                 <div class="form-group row">
                   <label for="1234" class="col-sm-3 col-form-label"><?php __("title"); ?> (Türkçe)</label>
                   <div class="col-sm-9">
-                    <input dir="ltr" type="text" class="form-control name_tr" id="1234" value="<?php echo $fetch["name_tr"]; ?>" placeholder="<?php __("enter_title"); ?>">
+                    <input dir="ltr" type="text" class="form-control emptyInput name_tr" value="<?php echo $fetch["name_tr"]; ?>" id="1234" placeholder="<?php __("enter_title"); ?>">
                   </div>
                 </div>
 
-                <button type="submit" id="editCategory" class="btn btn-success mr-2"><?php __("edit"); ?></button>
+                <button type="submit" id="editCategory" class="btn btn-success mr-2 editCategory"><?php __("edit"); ?></button>
               </form>
             </div>
           </div>

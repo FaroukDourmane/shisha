@@ -106,6 +106,16 @@
     $id = intval($_POST["id"]);
     $type = "error";
 
+    $check = $Q->query("SELECT * FROM `categories` WHERE `id`='$id' ");
+    if ( $check->num_rows > 0 ) {
+      $fetch = $check->fetch_assoc();
+      $image = $fetch["image_path"];
+      if ( !empty(trim($image)) )
+      {
+        delete_file("../../../$image");
+      }
+    }
+
     $delete = $Q->query("DELETE FROM `categories` WHERE `id`='$id'");
     if ( $delete )
     {

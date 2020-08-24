@@ -24,6 +24,8 @@ if ( isset($_SESSION["category_id"]) ) {
 }
 
 $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
+$active_categories = $Q->query("SELECT * FROM `categories` WHERE `status`='1' ");
+$hidden_categories = $Q->query("SELECT * FROM `categories` WHERE `status`='0' ");
 ?>
 
 <div class="content-wrapper">
@@ -48,7 +50,7 @@ $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                     <div class="col">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $query->num_rows; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
                         </div>
                       </div>
@@ -66,7 +68,7 @@ $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                     <div class="col-lg-4 col-md-6">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $active_categories->num_rows; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_category"); ?></h5>
                         </div>
                       </div>
@@ -74,7 +76,7 @@ $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                     <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $hidden_categories->num_rows; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_category"); ?></h5>
                         </div>
                       </div>
@@ -105,6 +107,7 @@ $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
             <table class="table table-striped table-responsive">
               <thead>
                 <tr>
+                  <th> <?php __("photo"); ?> </th>
                   <th> <?php __("name"); ?> </th>
                   <th> <?php __("name"); ?> (Arabic) </th>
                   <th> <?php __("name"); ?> (Turkish) </th>
@@ -128,7 +131,8 @@ $query = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
 
                     <!-- Category -->
                     <tr class="deletable <?php echo $fetch["id"]; ?>">
-                      <td class="py-1"> <?php echo ($fetch["status"] == 1) ? '<i class="circle active"></i>' : '<i class="circle disabled"></i>';  ?> <?php echo $fetch["name"]; ?> </td>
+                      <td class="py-1"> <?php echo (!empty(trim($fetch["image_path"]))) ? '<img src="../../'.$fetch["image_path"].'" />' : ""; ?> </td>
+                      <td class="py-1"> <?php echo ($fetch["status"] == 1) ? '<i class="circle active"></i>' : '<i class="circle disabled"></i>';  ?> <?php echo $fetch["name_en"]; ?> </td>
                       <td class="py-1"> <?php echo $fetch["name_ar"]; ?> </td>
                       <td class="py-1"> <?php echo $fetch["name_tr"]; ?> </td>
                       <td> <?php echo $products->num_rows; ?> </td>

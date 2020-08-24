@@ -78,7 +78,7 @@ if ( !admin_logged() )
                   <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <a href="#newproduct" id="getAjaxPage" class="btn btn-success">
+                        <a href="#newProduct" id="getAjaxPage" class="btn btn-success">
                           <h3 class="mb-0 font-weight-semibold"><?php __("new_product"); ?></h3>
                         </a>
                       </div>

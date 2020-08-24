@@ -15,7 +15,9 @@ $(document).ready(function(){
     "#addCategory": "pages/addCateogry.php",
     "#addsocial": "pages/addsocial.php",
     "#editCategory": "pages/editCategory.php",
-    "#products": "pages/products.php"
+    "#products": "pages/products.php",
+
+    "#newProduct": "pages/newProduct.php",
   };
 
   // AJAX Page Changer

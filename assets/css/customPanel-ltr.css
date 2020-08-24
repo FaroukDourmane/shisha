@@ -228,3 +228,94 @@ i.fas{
 
 .circle.active {background:#43EB7B;}
 .circle.disabled {background:#FF5858;}
+
+.upload-container
+{
+  display: block;
+  height: 100px;
+  line-height: 100px;
+  width: 100%;
+  text-align: center;
+  background: #f9f9f9;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border: 1px #f1f1f1 solid;
+  border-radius: 5px;
+}
+
+.upload-container a {
+  font-size: 25px !important;
+  color: #777 !important;
+  font-weight: 700;
+  font-family: 'cairo';
+}
+
+.upload-container:hover {
+  background: #f1f1f1;
+}
+
+.gallery-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.gallery-container .item {
+  display: block;
+  width: 150px;
+  height: 150px;
+  background-color: #f5f5f5;
+  background-size: cover !important;
+  background-position: center !important;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.gallery-container .item .delete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #e16767;
+  color: #FFF;
+  cursor: pointer;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-family: 'cairo';
+  font-weight: 700;
+  border-radius: 5px 0 5px 0;
+}
+
+.gallery-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.gallery-container .item {
+  display: block;
+  width: 150px;
+  height: 150px;
+  background-color: #f5f5f5;
+  background-size: cover !important;
+  background-position: center !important;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  border-radius: 5px;
+}
+
+.gallery-container .item .delete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #e16767;
+  color: #FFF;
+  cursor: pointer;
+  width: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-family: 'cairo';
+  font-weight: 700;
+  border-radius: 5px 0 5px 0;
+}

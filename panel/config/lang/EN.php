@@ -138,6 +138,7 @@
     // Prices
     "price_in_tl" => "Price in Turkish Lira",
     "price_in_usd" => "Price in USD",
+    "price" => "Price",
 
     "weight" => "Weight",
 
@@ -225,5 +226,7 @@
 
     "snapchat" => "Snapchat",
     "username" => "Username",
+
+    "add_to_gallery" => "Add photos to gallery",
   ];
 ?>
