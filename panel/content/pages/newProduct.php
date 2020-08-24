@@ -46,7 +46,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
 
                         <div class="row">
                           <div class="col-12">
-                            <a href="#categories" id="getAjaxPage" class="btn btn-secondary"> <?php __("back"); ?> <i class="mdi mdi-arrow-left"></i> </a>
+                            <a href="#products" id="getAjaxPage" class="btn btn-secondary"> <?php __("back"); ?> <i class="mdi mdi-arrow-left"></i> </a>
                           </div>
                         </div>
 
