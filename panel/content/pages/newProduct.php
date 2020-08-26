@@ -161,10 +161,17 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
 
                           <hr />
 
-                          <label class="upload-container">
-                            <input type="file" name="photo_gallery[]" multiple style="display:none;" />
-                            <a> <?php __("add_to_gallery"); ?> </a>
-                          </label>
+                          <div class="form-group row">
+                            <div class="col-sm-12">
+                              <label class="upload-container">
+                                <input type="file" name="photo_gallery[]" multiple style="display:none;" />
+                                <div style="line-height: normal;display:inline-block;">
+                                  <a> <?php __("add_to_gallery"); ?> </a>
+                                  <!-- <p style="color:#555;">dsdsd</p> -->
+                                </div>
+                              </label>
+                            </div>
+                          </div>
 
                           <div class="gallery-container">
                             <?php for ($i=0; $i < 6; $i++) { ?>

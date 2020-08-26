@@ -232,12 +232,10 @@ i.fas{
 .upload-container
 {
   display: block;
-  height: 100px;
-  line-height: 100px;
+  padding: 20px;
   width: 100%;
   text-align: center;
   background: #f9f9f9;
-  margin-bottom: 20px;
   cursor: pointer;
   border: 1px #f1f1f1 solid;
   border-radius: 5px;

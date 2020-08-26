@@ -291,7 +291,42 @@ $(document).on("click",".editCategory",function(e){
 // END editing a category
 
 
-  // ADD NEW PRODUCT
+// Product gallery uploads
+$(document).on("change","input[name='photo_gallery[]']",function(e){
+  var numFiles = $(this)[0].files.length;
+  if (numFiles > 0){
+    var gallery_files = $('input[name="photo_gallery[]"]').prop('files')[0];
+    var gallery_array = [];
+
+
+    var form_data = new FormData();
+
+    for (var i = 0; i < numFiles; i++) {
+      gallery_file = $('input[name="photo_gallery[]"]').prop('files')[i];
+      var data = new FormData();
+      data.append('gallery', gallery_file);
+      data.append('action', "upload_gallery");
+      data.append('id', response.id);
+
+      $.ajax({
+          url: 'ajax/uploadProductGallery.php',
+          dataType: 'text',  // what to expect back from the PHP script, if anything
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: data,
+          type: 'post',
+          success: function(result){}
+       });
+
+    }
+
+  }
+  //$(this).val("");
+});
+
+
+// ADD NEW PRODUCT
   $(document).on("click",".insertProduct",function(e){
 
     e.preventDefault();

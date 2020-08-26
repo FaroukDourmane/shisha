@@ -19,6 +19,24 @@ deny_self(basename(__FILE__));
 ######## END FUNCTION ###########
 
 
+# Generate REFERENCE for temporary upload files
+function generateReference(){
+  GLOBAL $_SESSION;
+  $found = false;
+
+  while( $found !== true ){
+    $generated_reference = strtoupper(substr(uniqid(), 6, 6));
+
+    if ( !isset($_SESSION["temp_gallery"][$generated_reference]) )
+    {
+      $found = true;
+    }
+
+  }
+  return $generated_reference;
+}
+
+
 ######## RETURN LANGUAGE FILE SOURCE FOR CONTROL PANEL
 function panel_lang_file(){
   GLOBAL $av_panel_lang;
@@ -770,7 +788,7 @@ function fill_input($name)
 
 #################################
 # MULTIPLE FILE UPLOAD
-# Returns file name if uploaded
+# Returns array of file names When successful or FALSE when failing
 #################################
 function upload_files($input,$path,$allowed_extensions=NULL){
   GLOBAL $Q,$_SESSION,$_FILES;
