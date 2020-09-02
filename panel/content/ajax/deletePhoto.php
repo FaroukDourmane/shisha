@@ -25,29 +25,29 @@
   // #################################################
   // #################################################
 
-  if ( isset($_POST["action"]) && $_POST["action"] == "upload_gallery" && isset($_SESSION["reference"]) )
+  if ( isset($_POST["action"]) && $_POST["action"] == "deletePhoto" && isset($_SESSION["reference"]) && isset($_POST["id"]) )
   {
-
+    $id = intval($_POST["id"]);
     $reference = $_SESSION["reference"];
-    $path = "../../../assets/temp/$reference/";
-    $upload = upload_files("photo_gallery",$path,"images");
+    //$path = "../../../assets/temp/$reference/";
+    //$upload = upload_files("photo_gallery",$path,"images");
 
-    if ( $upload && is_array($upload) )
+    if ( isset($_SESSION["temp_gallery"][$reference][$id]) )
     {
-      $inserted = array();
-
-      foreach ($upload as $key => $value) {
-        $_SESSION["temp_gallery"][$reference][] = $value;
-        end($_SESSION["temp_gallery"][$reference]);
-        $k = key($_SESSION["temp_gallery"][$reference]);
-        $inserted[$k] = $value;
+      $filename = $_SESSION["temp_gallery"][$reference][$id];
+      $file_path = "../../../assets/temp/$reference/$filename";
+      if ( delete_file($file_path) )
+      {
+        unset($_SESSION["temp_gallery"][$reference][$id]);
+        $type = "success";
+        $text = __("photo_deleted", true);
+      }else{
+        $type = "error";
+        $text = __("photo_not_deleted", true);
       }
-
-      $type = "success";
-      $text = $inserted;
     }else{
       $type = "error";
-      $text = "Upload error";
+      $text = __("photo_not_found", true);
     }
 
     $response = [

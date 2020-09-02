@@ -293,38 +293,59 @@ $(document).on("click",".editCategory",function(e){
 
 // Product gallery uploads
 $(document).on("change","input[name='photo_gallery[]']",function(e){
+  var form = $(this).parents("form");
+
   var numFiles = $(this)[0].files.length;
   if (numFiles > 0){
-    var gallery_files = $('input[name="photo_gallery[]"]').prop('files')[0];
-    var gallery_array = [];
+    $(".upload-wrapper").addClass("loading");
 
+    var data = new FormData($(form)[0]);
+    console.log(data);
 
-    var form_data = new FormData();
+    $.ajax({
+        url: 'ajax/uploadProductGallery.php',
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: 'post',
+        success: function(result){
+          result = $.parseJSON(result);
+          if (result.type == "success")
+          {
+            $.each(result.text, function(k,i){
+              $(".gallery-container").prepend('<div class="item" id="'+k+'" style="background-image:url(../../assets/temp/'+result.reference+'/'+i+');"><a class="delete">X</a></div>');
+            });
+          }else{
+            alert(result.text);
+          }
 
-    for (var i = 0; i < numFiles; i++) {
-      gallery_file = $('input[name="photo_gallery[]"]').prop('files')[i];
-      var data = new FormData();
-      data.append('gallery', gallery_file);
-      data.append('action', "upload_gallery");
-      data.append('id', response.id);
-
-      $.ajax({
-          url: 'ajax/uploadProductGallery.php',
-          dataType: 'text',  // what to expect back from the PHP script, if anything
-          cache: false,
-          contentType: false,
-          processData: false,
-          data: data,
-          type: 'post',
-          success: function(result){}
-       });
-
-    }
+          $(".upload-wrapper").removeClass("loading");
+        }
+     });
 
   }
-  //$(this).val("");
 });
 
+// DELETE Gallery photo
+$(document).on("click",".gallery-container .item .delete",function(e){
+  e.preventDefault();
+  var id = $(this).parent(".item").attr("id");
+  var item = $(this).parent(".item");
+
+  $.post("ajax/deletePhoto.php", {action: "deletePhoto", id: id})
+  .done(function(data){
+    data = $.parseJSON(data);
+
+    if ( data.type == "success" )
+    {
+      $(item).remove();
+    }else{
+      alert(data.text);
+    }
+  });
+})
 
 // ADD NEW PRODUCT
   $(document).on("click",".insertProduct",function(e){
@@ -333,28 +354,37 @@ $(document).on("change","input[name='photo_gallery[]']",function(e){
     $(".ajaxContainer").addClass("loading");
     $(".loadingContainer").addClass("active");
 
-    var category = $(".selectCategory :selected").val();
-    var name = $(".productName").val();
-    var description = $(".productDescription").val();
+    var category = $(".category :selected").val();
+    var status = $(".productStatus :selected").val();
+
+    var name_en = $(".name_en").val();
+    var name_ar = $(".name_ar").val();
+    var name_tr = $(".name_tr").val();
+
     var price_tl = $(".price_tl").val();
     var price_usd = $(".price_usd").val();
-    var productWeight = $(".productWeight").val();
+    var price_eur = $(".price_eur").val();
+
+    var description = $(".product_description").val();
+    var keywords = $(".keywords").val();
 
     var cover_file = $('input[name="coverFile"]').prop('files')[0];
-    var gallery_files = $('input[name="galleryFiles[]"]').prop('files')[0];
-    var gallery_files_count = $('input[name="galleryFiles[]"]').prop('files').length;
-
-    var gallery_array = [];
 
     var form_data = new FormData();
 
     form_data.append('category', category);
-    form_data.append('name', name);
-    form_data.append('description', description);
+    form_data.append('status', status);
+
+    form_data.append('name_en', name_en);
+    form_data.append('name_ar', name_ar);
+    form_data.append('name_tr', name_tr);
 
     form_data.append('price_tl', price_tl);
     form_data.append('price_usd', price_usd);
-    form_data.append('productWeight', productWeight);
+    form_data.append('price_eur', price_eur);
+    
+    form_data.append('description', description);
+    form_data.append('keywords', keywords);
 
     form_data.append('cover', cover_file);
     form_data.append('action', "insertArticle");

@@ -30,8 +30,20 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
       redirect("#products");
       exit;
     }
-?>
 
+  if ( !isset($_SESSION["reference"]) )
+  {
+    $_SESSION["reference"] = generateReference();
+  }
+
+  if ( !isset($_SESSION["temp_gallery"]) )
+  {
+     $_SESSION["temp_gallery"][$reference] = array();
+  }
+
+  $reference = $_SESSION["reference"];
+
+?>
           <div class="content-wrapper">
             <div class="row">
 
@@ -51,8 +63,6 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                         </div>
 
                         <h4 class="mt-4 mb-4"><?php __("new_product"); ?></h4>
-                        <form>
-
                           <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"><?php __("category"); ?></label>
                             <div class="col-sm-9">
@@ -71,7 +81,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                           <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"><?php __("status"); ?></label>
                             <div class="col-sm-9">
-                              <select class="custom-select categoryStatus" name="status">
+                              <select class="custom-select productStatus" name="status">
                                 <option value="1" selected> <?php __("active") ?> </option>
                                 <option value="0"> <?php __("hidden") ?> </option>
                               </select>
@@ -83,7 +93,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                             <div class="col-sm-9">
                               <div class="input-group mb-3">
                                 <div class="custom-file">
-                                  <input type="file" class="custom-file-input" name="categoryPhoto" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                  <input type="file" class="custom-file-input" name="coverFile" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                   <label class="custom-file-label" for="inputGroupFile01"><?php __("choose_file"); ?></label>
                                 </div>
                               </div>
@@ -143,7 +153,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                             <label  class="col-sm-3 col-form-label"><?php __("product_description"); ?></label>
                             <div class="col-sm-9">
                               <div class="input-group mb-3">
-                                <textarea name="name" class="form-control" rows="8" cols="80"></textarea>
+                                <textarea name="product_description" class="form-control product_description" rows="8" cols="80"></textarea>
                               </div>
                             </div>
                           </div>
@@ -154,7 +164,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                             <label  class="col-sm-3 col-form-label"><?php __("keywords"); ?></label>
                             <div class="col-sm-9">
                               <div class="input-group mb-3">
-                                <input dir="ltr" type="text" class="form-control emptyInput price_tl" id="1" required />
+                                <input dir="ltr" type="text" class="form-control emptyInput keywords" id="1" required />
                               </div>
                             </div>
                           </div>
@@ -162,27 +172,38 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                           <hr />
 
                           <div class="form-group row">
-                            <div class="col-sm-12">
-                              <label class="upload-container">
-                                <input type="file" name="photo_gallery[]" multiple style="display:none;" />
-                                <div style="line-height: normal;display:inline-block;">
-                                  <a> <?php __("add_to_gallery"); ?> </a>
-                                  <!-- <p style="color:#555;">dsdsd</p> -->
-                                </div>
-                              </label>
+                            <div class="col-sm-12 upload-wrapper">
+                              <div class="loadingContainer"></div>
+                              <form action="" method="post">
+                                <label class="upload-container">
+                                  <input type="file" name="photo_gallery[]" multiple style="display:none;" />
+                                  <div style="line-height: normal;display:inline-block;">
+                                    <a> <?php __("add_to_gallery"); ?> </a>
+                                    <!-- <p style="color:#555;">dsdsd</p> -->
+                                  </div>
+                                </label>
+                                <input type="hidden" name="action" value="upload_gallery" />
+                              </form>
                             </div>
                           </div>
 
                           <div class="gallery-container">
-                            <?php for ($i=0; $i < 6; $i++) { ?>
+                            <?php if (isset($_SESSION["temp_gallery"][$reference])) { ?>
+                              <?php foreach ($_SESSION["temp_gallery"][$reference] as $key => $value) { ?>
+                                <div class="item" id="<?php echo $key; ?>" style="background-image:url('../../assets/temp/<?php echo $reference; ?>/<?php echo $value; ?>');">
+                                  <a class="delete">X</a>
+                                </div>
+                              <?php } ?>
+                            <?php } ?>
+
+                            <?php /* for ($i=0; $i < 6; $i++) { ?>
                               <div class="item">
                                 <a class="delete">X</a>
                               </div>
-                            <?php } ?>
+                            <?php }*/ ?>
                           </div>
 
-                          <button type="submit" id="addCategory" class="btn btn-success mr-2 addCategory"><?php __("add"); ?></button>
-                        </form>
+                          <a href="#" id="addProduct" class="btn btn-success mr-2 insertProduct"><?php __("add"); ?></a>
                       </div>
                     </div>
                   </div>

@@ -255,6 +255,7 @@ i.fas{
 .gallery-container {
   display: flex;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .gallery-container .item {
@@ -316,4 +317,26 @@ i.fas{
   font-family: 'cairo';
   font-weight: 700;
   border-radius: 5px 0 5px 0;
+}
+
+.upload-wrapper {
+  position: relative;
+}
+
+.upload-wrapper.loading::after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background: #FFF;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.upload-wrapper.loading .loadingContainer{
+  opacity: 1;
+  z-index: 3;
+  visibility: visible;
 }

@@ -50,26 +50,33 @@
   if ( isset($_POST["action"]) && $_POST["action"] == "insertArticle" )
   {
 
+
+    /// DATA
     $category = intval($_POST["category"]);
-    $name = mysqli_real_escape_string($Q, $_POST["name"]);
-    $description = mysqli_real_escape_string($Q, $_POST["description"]);
+    $status = intval($_POST["status"]);
+
+    $name_en = mysqli_real_escape_string($Q, trim($_POST["name_en"]));
+    $name_ar = mysqli_real_escape_string($Q, trim($_POST["name_ar"]));
+    $name_tr = mysqli_real_escape_string($Q, trim($_POST["name_tr"]));
 
     $price_tl = intval($_POST["price_tl"]);
     $price_usd = intval($_POST["price_usd"]);
-    $weight = mysqli_real_escape_string($Q, $_POST["productWeight"]);
+    $price_eur = intval($_POST["price_eur"]);
+
+    $description = mysqli_real_escape_string($Q, trim($_POST["description"]));
+    $keywords = strtolower(mysqli_real_escape_string($Q, trim($_POST["keywords"])));
+    /// END DATA
 
     $id = 0;
-
     $date = time();
-
     $type = "error";
 
     if ( !empty(trim($name)) && $category !== 0 && !empty($description) )
     {
       $insert = $Q->query(" INSERT INTO `products`
-      (`category`, `name`, `product_description`, `price_tl`, `price_usd`, `weight`,`time`)
+      (`category`, `name_en`, `name_ar`, `name_tr`, `description`, `price_tl`, `price_usd`, `price_eur`,`time`,`keywords`)
         VALUES
-      ('$category','$name', '$description','$price_tl','$price_usd','$weight', '$date')
+      ('$category','$name_en','$name_ar','$name_tr', '$description','$price_tl','$price_usd','$price_eur', '$date','$keywords')
       ");
 
       if ( $insert )
