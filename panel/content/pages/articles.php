@@ -21,6 +21,12 @@ if ( !admin_logged() )
 
 $query = $Q->query("SELECT * FROM `articles` ");
 
+$active_q =   $Q->query("SELECT COUNT(*) FROM `articles` WHERE `status`='1' ");
+$hidden_q =   $Q->query("SELECT COUNT(*) FROM `articles` WHERE `status`='0' ");
+
+$active_articles = $active_q->fetch_assoc();
+$hidden_articles = $hidden_q->fetch_assoc();
+
 if ( isset($_SESSION["article_id"]) )
 {
   unset($_SESSION["article_id"]);
@@ -53,7 +59,7 @@ if ( isset($_SESSION["article_id"]) )
                     <div class="col">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $query->num_rows; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
                         </div>
                       </div>
@@ -71,7 +77,7 @@ if ( isset($_SESSION["article_id"]) )
                     <div class="col-lg-4 col-md-6">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $active_articles["COUNT(*)"]; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_articles"); ?></h5>
                         </div>
                       </div>
@@ -79,7 +85,7 @@ if ( isset($_SESSION["article_id"]) )
                     <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                       <div class="d-flex">
                         <div class="wrapper">
-                          <h3 class="mb-0 font-weight-semibold">0</h3>
+                          <h3 class="mb-0 font-weight-semibold"><?php echo $hidden_articles["COUNT(*)"]; ?></h3>
                           <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_articles"); ?></h5>
                         </div>
                       </div>

@@ -27,29 +27,10 @@
 
   $type = "error";
 
-  if ( isset($_POST["action"]) && $_POST["action"] == "upload_gallery" )
-  {
-    $id = intval($_POST["id"]);
-
-    $path = "../../../assets/products/$id/";
-
-
-    $file = upload("gallery",$path,"images");
-
-    if ($file)
-    {
-      $sql_path = "assets/products/$id/$file";
-
-      $insert_gallery = $Q->query("INSERT INTO `product_gallery`
-        (`product`, `path`)
-          VALUES
-        ('$id','$sql_path')");
-    }
-  }
-
-  if ( isset($_POST["action"]) && $_POST["action"] == "insertArticle" )
+  if ( isset($_POST["action"]) && $_POST["action"] == "insertArticle" && isset($_SESSION["reference"]) )
   {
 
+    $reference = $_SESSION["reference"];
 
     /// DATA
     $category = intval($_POST["category"]);
@@ -71,12 +52,12 @@
     $date = time();
     $type = "error";
 
-    if ( !empty(trim($name)) && $category !== 0 && !empty($description) )
+    if ( !empty(trim($name_en)) && $category !== 0 && !empty($description) )
     {
       $insert = $Q->query(" INSERT INTO `products`
-      (`category`, `name_en`, `name_ar`, `name_tr`, `description`, `price_tl`, `price_usd`, `price_eur`,`time`,`keywords`)
+      (`category`, `name_en`, `name_ar`, `name_tr`, `description`, `price_tl`, `price_usd`, `price_eur`,`time`,`keywords`,`status`)
         VALUES
-      ('$category','$name_en','$name_ar','$name_tr', '$description','$price_tl','$price_usd','$price_eur', '$date','$keywords')
+      ('$category','$name_en','$name_ar','$name_tr', '$description','$price_tl','$price_usd','$price_eur', '$date','$keywords','$status')
       ");
 
       if ( $insert )
@@ -93,9 +74,23 @@
           $update_cover = $Q->query("UPDATE `products` SET `cover`='$cover_path' WHERE `id`='$last_id' ");
         }
 
+        if (isset($_SESSION["temp_gallery"][$reference])) {
+          foreach ($_SESSION["temp_gallery"][$reference] as $key => $value) {
+            $filepath = "../../../assets/temp/$reference/$value";
+            $newpath = "../../../assets/products/$last_id/$value";
+            if ( rename($filepath, $newpath) ) {
+              $sqlpath = "assets/products/$last_id/$value";
+              $insert_gallery = $Q->query("INSERT INTO `product_gallery` (`product_id`,`image_path`) VALUES ('$last_id','$sqlpath') ");
+            }
+          }
+        }
+
         $type = "success";
         $text = __("update_success",true);
         $id = $last_id;
+
+        unset($_SESSION["temp_gallery"]);
+        unset($_SESSION["reference"]);
       }
     }else{
       $text = __("missing_inputs",true);

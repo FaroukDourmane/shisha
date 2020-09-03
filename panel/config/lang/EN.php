@@ -232,5 +232,7 @@
     "photo_deleted" => "The photo was deleted successfully",
     "photo_not_found" => "The photo was not found",
     "photo_not_deleted" => "There was a problem while trying to delete the picture",
+
+    "photos_added" => "Photo(s) was added successfully",
   ];
 ?>

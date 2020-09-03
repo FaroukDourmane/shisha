@@ -28,6 +28,8 @@
   if ( isset($_POST["action"]) && $_POST["action"] == "insertArticle" )
   {
 
+    $status = intval($_POST["status"]);
+
     $title = mysqli_real_escape_string($Q, $_POST["title"]);
     $title_en = mysqli_real_escape_string($Q, $_POST["title_en"]);
     $title_tr = mysqli_real_escape_string($Q, $_POST["title_tr"]);
@@ -43,7 +45,10 @@
 
     if ( !empty(trim($title)) && !empty(trim($content)) )
     {
-      $insert = $Q->query("INSERT INTO `articles` (`title`,`title_en`,`title_tr`,`keywords`,`content`,`content_en`,`content_tr`,`date`) VALUES ('$title','$title_en','$title_tr','$keywords','$content','$contentEN','$contentTR','$date') ");
+      $insert = $Q->query("INSERT INTO `articles`
+      (`title`,`title_en`,`title_tr`,`keywords`,`content`,`content_en`,`content_tr`,`time`,`status`)
+      VALUES
+      ('$title','$title_en','$title_tr','$keywords','$content','$contentEN','$contentTR','$date','$status') ");
 
       if ( $insert )
       {

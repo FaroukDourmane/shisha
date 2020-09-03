@@ -36,12 +36,12 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
     $_SESSION["reference"] = generateReference();
   }
 
+  $reference = $_SESSION["reference"];
+
   if ( !isset($_SESSION["temp_gallery"]) )
   {
      $_SESSION["temp_gallery"][$reference] = array();
   }
-
-  $reference = $_SESSION["reference"];
 
 ?>
           <div class="content-wrapper">
@@ -106,7 +106,7 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                           <div class="form-group row">
                             <label  class="col-sm-3 col-form-label"><?php __("product_name"); ?> (English)</label>
                             <div class="col-sm-9">
-                              <input dir="ltr" type="text" class="form-control emptyInput name_en" id="1" placeholder="<?php __("enter_title"); ?>" required />
+                              <input dir="ltr" type="text" class="form-control emptyInput name_en" id="100" placeholder="<?php __("enter_title"); ?>" required />
                             </div>
                           </div>
 
@@ -195,12 +195,6 @@ $categories_q = $Q->query("SELECT * FROM `categories` ORDER BY `id` DESC ");
                                 </div>
                               <?php } ?>
                             <?php } ?>
-
-                            <?php /* for ($i=0; $i < 6; $i++) { ?>
-                              <div class="item">
-                                <a class="delete">X</a>
-                              </div>
-                            <?php }*/ ?>
                           </div>
 
                           <a href="#" id="addProduct" class="btn btn-success mr-2 insertProduct"><?php __("add"); ?></a>

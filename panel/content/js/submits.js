@@ -291,7 +291,8 @@ $(document).on("click",".editCategory",function(e){
 // END editing a category
 
 
-// Product gallery uploads
+// Product gallery uploads (New product)
+// NOTE : This will upload the pictures to a temporary folder
 $(document).on("change","input[name='photo_gallery[]']",function(e){
   var form = $(this).parents("form");
 
@@ -300,7 +301,6 @@ $(document).on("change","input[name='photo_gallery[]']",function(e){
     $(".upload-wrapper").addClass("loading");
 
     var data = new FormData($(form)[0]);
-    console.log(data);
 
     $.ajax({
         url: 'ajax/uploadProductGallery.php',
@@ -315,7 +315,7 @@ $(document).on("change","input[name='photo_gallery[]']",function(e){
           if (result.type == "success")
           {
             $.each(result.text, function(k,i){
-              $(".gallery-container").prepend('<div class="item" id="'+k+'" style="background-image:url(../../assets/temp/'+result.reference+'/'+i+');"><a class="delete">X</a></div>');
+              $(".gallery-container").prepend('<div class="item" id="'+k+'" style="background-image:url(\'../../assets/temp/'+result.reference+'/'+i+'\');"><a class="delete">X</a></div>');
             });
           }else{
             alert(result.text);
@@ -328,23 +328,79 @@ $(document).on("change","input[name='photo_gallery[]']",function(e){
   }
 });
 
+
+// Product gallery uploads (Edit product)
+// This will upload the picture directly to the product's folder and ad it to the Database
+$(document).on("change","input[name='photo_gallery_edit[]']",function(e){
+  var form = $(this).parents("form");
+
+  var numFiles = $(this)[0].files.length;
+  if (numFiles > 0){
+    $(".upload-wrapper").addClass("loading");
+
+    var data = new FormData($(form)[0]);
+
+    $.ajax({
+        url: 'ajax/uploadProductGalleryEdit.php',
+        dataType: 'text',  // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: data,
+        type: 'post',
+        success: function(result){
+          result = $.parseJSON(result);
+          if (result.type == "success")
+          {
+            $.each(result.text, function(k,i){
+              $(".gallery-container").prepend('<div class="item" id="'+k+'" style="background-image:url(\'../../assets/products/'+result.id+'/'+i+'\');"><a class="delete">X</a></div>');
+            });
+
+            pushNotification(result.message,result.type);
+          }else{
+            pushNotification(result.text,result.type);
+          }
+
+          $(".upload-wrapper").removeClass("loading");
+        }
+     });
+
+  }
+});
+
+
 // DELETE Gallery photo
 $(document).on("click",".gallery-container .item .delete",function(e){
   e.preventDefault();
   var id = $(this).parent(".item").attr("id");
   var item = $(this).parent(".item");
 
-  $.post("ajax/deletePhoto.php", {action: "deletePhoto", id: id})
-  .done(function(data){
-    data = $.parseJSON(data);
+  if ( $(this).hasClass("sql") )
+  {
+    $.post("ajax/deletePhotoSQL.php", {action: "deletePhoto", id: id})
+    .done(function(data){
+      data = $.parseJSON(data);
 
-    if ( data.type == "success" )
-    {
-      $(item).remove();
-    }else{
-      alert(data.text);
-    }
-  });
+      if ( data.type == "success" )
+      {
+        $(item).remove();
+      }
+
+      pushNotification(data.text,data.type);
+    });
+  }else{
+    $.post("ajax/deletePhoto.php", {action: "deletePhoto", id: id})
+    .done(function(data){
+      data = $.parseJSON(data);
+
+      if ( data.type == "success" )
+      {
+        $(item).remove();
+      }
+
+      pushNotification(data.text,data.type);
+    });
+  }
 })
 
 // ADD NEW PRODUCT
@@ -382,7 +438,7 @@ $(document).on("click",".gallery-container .item .delete",function(e){
     form_data.append('price_tl', price_tl);
     form_data.append('price_usd', price_usd);
     form_data.append('price_eur', price_eur);
-    
+
     form_data.append('description', description);
     form_data.append('keywords', keywords);
 
@@ -398,36 +454,11 @@ $(document).on("click",".gallery-container .item .delete",function(e){
         data: form_data,
         type: 'post',
         success: function(response){
+
+          $(".ajaxContainer").removeClass("loading");
+          $(".loadingContainer").removeClass("active");
+
           response = $.parseJSON(response);
-
-          if ( response.type == "success" )
-          {
-
-            if ( gallery_files_count > 0 )
-            {
-
-              for (var i = 0; i < gallery_files_count; i++) {
-                gallery_file = $('input[name="galleryFiles[]"]').prop('files')[i];
-                var data = new FormData();
-                data.append('gallery', gallery_file);
-                data.append('action', "upload_gallery");
-                data.append('id', response.id);
-
-                $.ajax({
-                    url: 'ajax/addProduct.php',
-                    dataType: 'text',  // what to expect back from the PHP script, if anything
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    type: 'post',
-                    success: function(result){}
-                 });
-
-              }
-            }
-          }
-
           pushNotification(response.text,response.type);
 
           if ( response.type == "success" ) {
@@ -436,16 +467,83 @@ $(document).on("click",".gallery-container .item .delete",function(e){
               "#products": "pages/products.php",
             }
             initialize_page(pages);
-
           }
-
-          $(".ajaxContainer").removeClass("loading");
-          $(".loadingContainer").removeClass("active");
-
         }
      });
 
   });
+
+
+
+  // EDIT PRODUCT
+    $(document).on("click",".editProduct",function(e){
+
+      e.preventDefault();
+      $(".ajaxContainer").addClass("loading");
+      $(".loadingContainer").addClass("active");
+
+      var category = $(".category :selected").val();
+      var status = $(".productStatus :selected").val();
+
+      var name_en = $(".name_en").val();
+      var name_ar = $(".name_ar").val();
+      var name_tr = $(".name_tr").val();
+
+      var price_tl = $(".price_tl").val();
+      var price_usd = $(".price_usd").val();
+      var price_eur = $(".price_eur").val();
+
+      var description = $(".product_description").val();
+      var keywords = $(".keywords").val();
+
+      var cover_file = $('input[name="coverFile"]').prop('files')[0];
+
+      var form_data = new FormData();
+
+      form_data.append('category', category);
+      form_data.append('status', status);
+
+      form_data.append('name_en', name_en);
+      form_data.append('name_ar', name_ar);
+      form_data.append('name_tr', name_tr);
+
+      form_data.append('price_tl', price_tl);
+      form_data.append('price_usd', price_usd);
+      form_data.append('price_eur', price_eur);
+
+      form_data.append('description', description);
+      form_data.append('keywords', keywords);
+
+      form_data.append('cover', cover_file);
+      form_data.append('action', "editProduct");
+
+      $.ajax({
+          url: 'ajax/editProduct.php',
+          dataType: 'text',  // what to expect back from the PHP script, if anything
+          cache: false,
+          contentType: false,
+          processData: false,
+          data: form_data,
+          type: 'post',
+          success: function(response){
+
+            $(".ajaxContainer").removeClass("loading");
+            $(".loadingContainer").removeClass("active");
+
+            response = $.parseJSON(response);
+            pushNotification(response.text,response.type);
+
+            if ( response.type == "success" ) {
+              location.hash = "#editProduct";
+              var pages = {
+                "#editProduct": "pages/editProduct.php",
+              }
+              initialize_page(pages);
+            }
+          }
+       });
+
+    });
 
 
   // ADD PICTURES TO HEADER SLIDESHOW
@@ -519,105 +617,6 @@ $(document).on("click",".gallery-container .item .delete",function(e){
       });
     });
 
-  // EDIT PRODUCT
-  $(document).on("click",".editProduct",function(e){
-
-    e.preventDefault();
-    $(".ajaxContainer").addClass("loading");
-    $(".loadingContainer").addClass("active");
-
-    var category = $(".selectCategory :selected").val();
-    var name = $(".productName").val();
-    var description = $(".productDescription").val();
-
-    var price_tl = $(".price_tl").val();
-    var price_usd = $(".price_usd").val();
-    var productWeight = $(".productWeight").val();
-
-    var cover_file = $('input[name="coverFile"]').prop('files')[0];
-    var gallery_files = $('input[name="galleryFiles[]"]').prop('files')[0];
-    var gallery_files_count = $('input[name="galleryFiles[]"]').prop('files').length;
-
-    var gallery_array = [];
-
-    var form_data = new FormData();
-
-    form_data.append('category', category);
-    form_data.append('name', name);
-    form_data.append('description', description);
-    form_data.append('price_tl', price_tl);
-    form_data.append('price_usd', price_usd);
-    form_data.append('productWeight', productWeight);
-    form_data.append('cover', cover_file);
-    form_data.append('action', "editProduct");
-
-    $.ajax({
-        url: 'ajax/editProduct.php',
-        dataType: 'text',  // what to expect back from the PHP script, if anything
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: form_data,
-        type: 'post',
-        success: function(response){
-          response = $.parseJSON(response);
-
-          if ( response.type == "success" )
-          {
-
-            if ( gallery_files_count > 0 )
-            {
-
-              for (var i = 0; i < gallery_files_count; i++) {
-                gallery_file = $('input[name="galleryFiles[]"]').prop('files')[i];
-                var data = new FormData();
-                data.append('gallery', gallery_file);
-                data.append('action', "upload_gallery");
-                data.append('id', response.id);
-
-                $.ajax({
-                    url: 'ajax/editProduct.php',
-                    dataType: 'text',  // what to expect back from the PHP script, if anything
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    type: 'post',
-                    success: function(result){
-                      result = $.parseJSON(result);
-
-                      if (result.type == "success")
-                      {
-                        $("body .img-flex").append('<div class="img-preview '+result.id+'" style="display:inline-block;padding:20px 0px;"><a href="#" id="'+result.id+'" class="deleteImage"> <i class="mdi mdi-delete"></i> </a><img style="width:100px;" src="../../'+result.text+'" /></div>');
-                      }else{
-                        pushNotification(result.text,result.type);
-                      }
-                    }
-                 });
-
-              }
-            }
-          }
-
-          pushNotification(response.text,response.type);
-
-          if ( response.type == "success" ) {
-            location.hash = "#editProduct";
-            var pages = {
-              "#editProduct": "pages/editProduct.php",
-            }
-            initialize_page(pages);
-
-            $(".ajaxContainer").removeClass("loading");
-            $(".loadingContainer").removeClass("active");
-          }else{
-            $(".ajaxContainer").removeClass("loading");
-            $(".loadingContainer").removeClass("active");
-          }
-        }
-     });
-
-  });
 
   // DELETE PRODUCT IMAGE
   $(document).on("click",".deleteImage",function(e){
@@ -674,6 +673,8 @@ $(document).on("click",".gallery-container .item .delete",function(e){
 
     e.preventDefault();
 
+    var status = $(".articleStatus :selected").val();
+
     var title = $(".articleTitle").val();
     var title_en = $(".articleTitleEN").val();
     var title_tr = $(".articleTitleTR").val();
@@ -689,6 +690,8 @@ $(document).on("click",".gallery-container .item .delete",function(e){
 
     var form_data = new FormData();
     form_data.append('file', file_data);
+
+    form_data.append('status', status);
 
     form_data.append('title', title);
     form_data.append('title_en', title_en);
@@ -738,6 +741,8 @@ $(document).on("click",".gallery-container .item .delete",function(e){
 
     e.preventDefault();
 
+    var status = $(".articleStatus :selected").val();
+
     var title = $(".articleTitle").val();
     var title_en = $(".articleTitleEN").val();
     var title_tr = $(".articleTitleTR").val();
@@ -753,6 +758,8 @@ $(document).on("click",".gallery-container .item .delete",function(e){
 
     var form_data = new FormData();
     form_data.append('file', file_data);
+
+    form_data.append('status', status);
 
     form_data.append('title', title);
     form_data.append('title_en', title_en);

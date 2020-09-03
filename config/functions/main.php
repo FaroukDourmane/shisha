@@ -894,42 +894,31 @@ if ( isset($_FILES[$input]["name"]) && is_array($_FILES[$input]["name"]) )
 #################################
 # GET CATEGORY
 #################################
-function get_category($id=NULL)
+function get_category($id=NULL, $val=NULL)
 {
   GLOBAL $Q,$_SESSION;
 
   if ($id == NULL)
   {
-    $query = $Q->query("SELECT * FROM `category` ");
+    $query = $Q->query("SELECT * FROM `categories` ");
   }else{
     $id = intval($id);
-    $query = $Q->query("SELECT * FROM `category` WHERE `id`='$id' ");
+    $query = $Q->query("SELECT * FROM `categories` WHERE `id`='$id' ");
   }
 
   if ( $query->num_rows > 0 )
   {
     $fetch = $query->fetch_assoc();
+
+    if ( isset($fetch[$val]) )
+    {
+      return $fetch[$val];
+    }
+
     return $fetch;
   }
 
   return FALSE;
-}
-#################################
-# END FUNCTION
-#################################
-
-
-#################################
-# COUNT HOW MANY COMPANIES IN A CATEGORY
-#################################
-function count_category_companies($category_id)
-{
-  GLOBAL $Q;
-  $query = $Q->query("select count(1) FROM `company` WHERE `category`='$category_id' ");
-  $row = $query->fetch_assoc();
-  //$total = $row;
-
-  return intval($row["count(1)"]);
 }
 #################################
 # END FUNCTION

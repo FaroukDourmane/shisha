@@ -16,7 +16,7 @@ $(document).ready(function(){
     "#addsocial": "pages/addsocial.php",
     "#editCategory": "pages/editCategory.php",
     "#products": "pages/products.php",
-
+    "#editProduct": "pages/editProduct.php",
     "#newProduct": "pages/newProduct.php",
   };
 

@@ -65,6 +65,19 @@ $fetch = $query->fetch_assoc();
                       <div class="card-body">
                         <h4 class="card-title"><?php __("edit_article"); ?></h4>
                         <form class="forms-sample">
+
+                          <div class="form-group row">
+                            <label  class="col-sm-3 col-form-label"><?php __("status"); ?></label>
+                            <div class="col-sm-9">
+                              <select class="custom-select articleStatus" name="status">
+                                <option value="1" <?php echo ($fetch["status"] == 1) ? "selected" : ""; ?>> <?php __("active") ?> </option>
+                                <option value="0" <?php echo ($fetch["status"] == 0) ? "selected" : ""; ?>> <?php __("hidden") ?> </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <hr />
+
                           <!-- Title -->
                           <div class="form-group row">
                             <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("title"); ?></label>

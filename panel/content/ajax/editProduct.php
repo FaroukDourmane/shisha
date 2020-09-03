@@ -27,79 +27,57 @@
 
   $type = "error";
 
-  if ( isset($_POST["action"]) && $_POST["action"] == "upload_gallery" && isset($_SESSION["product_id"]) )
+  if ( isset($_POST["action"]) && $_POST["action"] == "editProduct" && isset($_SESSION["product_id"]))
   {
-    $id = ( isset($_POST["id"]) ) ? intval($_POST["id"]) : intval($_SESSION["product_id"]);
-    $path = "../../../assets/products/$id/";
+    $id = intval($_SESSION["product_id"]);
 
-    $type = "error";
-    $file = upload("gallery",$path,"images");
+    $check = $Q->query("SELECT * FROM `products` WHERE `id`='$id' ");
 
-    if ($file)
+    if ( $check->num_rows <= 0 )
     {
-      $sql_path = "assets/products/$id/$file";
-      $insert_gallery = $Q->query("INSERT INTO `product_gallery`
-        (`product`, `path`)
-          VALUES
-        ('$id','$sql_path')");
+      $text = __("product_not_found",true);
+      $type = "error";
 
-        if ( $insert_gallery )
-        {
-          $id = $Q->insert_id;
-          $type = "success";
-          $text = $sql_path;
-        }
-    }else{
-      $text = __("upload_error",true);
+      $response = [
+        "type" => $type,
+        "text" => $text
+      ];
+
+      $json_response = json_encode($response);
+      echo $json_response;
+      exit;
     }
 
-    $response = [
-      "type" => $type,
-      "text" => $text,
-      "id" => $id
-    ];
-
-    $json_response = json_encode($response);
-    echo $json_response;
-  }
-
-  if ( isset($_POST["action"]) && $_POST["action"] == "editProduct" && isset($_SESSION["product_id"]) )
-  {
-
+    /// DATA
     $category = intval($_POST["category"]);
-    $name = mysqli_real_escape_string($Q, $_POST["name"]);
-    $description = mysqli_real_escape_string($Q, $_POST["description"]);
+    $status = intval($_POST["status"]);
+
+    $name_en = mysqli_real_escape_string($Q, trim($_POST["name_en"]));
+    $name_ar = mysqli_real_escape_string($Q, trim($_POST["name_ar"]));
+    $name_tr = mysqli_real_escape_string($Q, trim($_POST["name_tr"]));
 
     $price_tl = intval($_POST["price_tl"]);
     $price_usd = intval($_POST["price_usd"]);
-    $weight = mysqli_real_escape_string($Q, $_POST["productWeight"]);
+    $price_eur = intval($_POST["price_eur"]);
 
-    $id = ( isset($_POST["id"]) ) ? intval($_POST["id"]) : intval($_SESSION["product_id"]);
-
-    $query = $Q->query("SELECT * FROM `products` WHERE `id`='$id' ");
-    if ( $query->num_rows > 0 )
-    {
-      $fetch = $query->fetch_assoc();
-    }
+    $description = mysqli_real_escape_string($Q, trim($_POST["description"]));
+    $keywords = strtolower(mysqli_real_escape_string($Q, trim($_POST["keywords"])));
+    /// END DATA
 
     $date = time();
 
-    $type = "error";
-
-    if ( !empty(trim($name)) && $category !== 0 && !empty($description) )
+    if ( !empty(trim($name_en)) && $category !== 0 && !empty($description) )
     {
-      $insert = $Q->query(" UPDATE `products` SET
-      `category`='$category',
-      `name`='$name',
-      `price_tl`='$price_tl',
-      `price_usd`='$price_usd',
-      `weight`='$weight',
-      `description`='$description',
-      WHERE `id`='$id'
-      ");
+      $update = $Q->query(" UPDATE `products` SET `category`='$category', `name_en`='$name_en', `name_ar`='$name_ar', `name_tr`='$name_tr',
+         `description`='$description', `price_tl`='$price_tl',
+          `price_usd`='$price_usd', `price_eur`='$price_eur',
+          `time`='$date',`keywords`='$keywords',
+          `status`='$status'
+          WHERE `id`='$id' ");
 
-      if ( $insert )
+      if ( $update )
       {
+
         $path = "../../../assets/products/$id/";
         $sql_path = "assets/products/$id/";
 
@@ -107,14 +85,13 @@
 
         if ( $cover )
         {
-          $old_file = "../../../".$fetch["cover"];
-          $cover_path = $sql_path.$cover;
+          $fetch = $check->fetch_assoc();
+          $old_path = "../../../".$fetch["cover"];
 
+          $delete_cover = delete_file($old_path);
+
+          $cover_path = $sql_path.$cover;
           $update_cover = $Q->query("UPDATE `products` SET `cover`='$cover_path' WHERE `id`='$id' ");
-          if ($update_cover)
-          {
-            delete_file($old_file);
-          }
         }
 
         $type = "success";

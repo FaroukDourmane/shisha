@@ -42,6 +42,19 @@ if ( !admin_logged() )
             <div class="card-body">
               <h4 class="card-title"><?php __("new_article"); ?> (<?php __("arabic"); ?>)</h4>
               <form class="forms-sample">
+
+                <div class="form-group row">
+                  <label  class="col-sm-3 col-form-label"><?php __("status"); ?></label>
+                  <div class="col-sm-9">
+                    <select class="custom-select articleStatus" name="status">
+                      <option value="1" selected> <?php __("active") ?> </option>
+                      <option value="0"> <?php __("hidden") ?> </option>
+                    </select>
+                  </div>
+                </div>
+
+                <hr />
+
                 <!-- Title -->
                 <div class="form-group row">
                   <label for="exampleInputEmail2" class="col-sm-3 col-form-label"><?php __("title"); ?> (<?php __("arabic"); ?>)</label>

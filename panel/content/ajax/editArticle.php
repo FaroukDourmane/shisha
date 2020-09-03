@@ -28,6 +28,8 @@
   if ( isset($_POST["action"]) && $_POST["action"] == "editArticle" && isset($_SESSION["article_id"]) )
   {
 
+    $status = intval($_POST["status"]);
+
     $title = mysqli_real_escape_string($Q, $_POST["title"]);
     $title_en = mysqli_real_escape_string($Q, $_POST["title_en"]);
     $title_tr = mysqli_real_escape_string($Q, $_POST["title_tr"]);
@@ -49,7 +51,7 @@
       $path = "../../../assets/articles/$id/";
       $file = upload("file",$path,"images");
 
-      $update = $Q->query("UPDATE `articles` SET `title`='$title',`title_en`='$title_en',`title_tr`='$title_tr',`keywords`='$keywords',`content`='$content',`content_en`='$contentEN',`content_tr`='$contentTR',`date`='$date' WHERE `id`='$id' ");
+      $update = $Q->query("UPDATE `articles` SET `title`='$title',`title_en`='$title_en',`title_tr`='$title_tr',`keywords`='$keywords',`content`='$content',`content_en`='$contentEN',`content_tr`='$contentTR',`time`='$date',`status`='$status' WHERE `id`='$id' ");
 
       if ( $update )
       {

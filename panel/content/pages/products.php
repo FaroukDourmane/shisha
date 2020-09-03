@@ -21,6 +21,18 @@ if ( !admin_logged() )
 // END : CHECK ADMIN AUTH
 // #################################################
 // #################################################
+
+  $products_q = $Q->query("SELECT * FROM `products` ");
+
+  $products_active_q =   $Q->query("SELECT COUNT(*) FROM `products` WHERE `status`='1' ");
+  $products_hidden_q =   $Q->query("SELECT COUNT(*) FROM `products` WHERE `status`='0' ");
+
+  $products_active = $products_active_q->fetch_assoc();
+  $products_hidden = $products_hidden_q->fetch_assoc();
+
+  if ( isset($_SESSION["product_id"]) ) {
+    unset($_SESSION["product_id"]);
+  }
 ?>
 <!--<link rel="stylesheet" type="text/css" href="../../assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">-->
 <script src="https://kit.fontawesome.com/98e695973b.js" crossorigin="anonymous"></script>
@@ -43,7 +55,7 @@ if ( !admin_logged() )
                   <div class="col">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h3 class="mb-0 font-weight-semibold"><?php echo $products_q->num_rows; ?></h3>
                         <h5 class="mb-0 font-weight-medium text-primary"><?php __("total"); ?></h5>
                       </div>
                     </div>
@@ -61,7 +73,7 @@ if ( !admin_logged() )
                   <div class="col-lg-4 col-md-6">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h3 class="mb-0 font-weight-semibold"><?php echo $products_active["COUNT(*)"]; ?></h3>
                         <h5 class="mb-0 font-weight-medium text-primary"><?php __("active_products"); ?></h5>
                       </div>
                     </div>
@@ -69,7 +81,7 @@ if ( !admin_logged() )
                   <div class="col-lg-4 col-md-6 mt-md-0 mt-4">
                     <div class="d-flex">
                       <div class="wrapper">
-                        <h3 class="mb-0 font-weight-semibold">0</h3>
+                        <h3 class="mb-0 font-weight-semibold"><?php echo $products_hidden["COUNT(*)"]; ?></h3>
                         <h5 class="mb-0 font-weight-medium text-primary"><?php __("hidden_products"); ?></h5>
                       </div>
                     </div>
@@ -132,28 +144,29 @@ if ( !admin_logged() )
                         <tbody>
                         <?php
                         $lang_suffix = __("lang_suffix", true);
+
+                        if ( $products_q->num_rows > 0 )
+                        {
+                          while ( $product = $products_q->fetch_assoc() ) {
+                            $status = ($product["status"] == 1) ? "active" : "disabled";
+                            $data_json = [ 'id' => $product["id"] ];
+                            $data_json = json_encode($data_json);
                         ?>
                           <tr>
-                            <td> <i class="circle disabled"></i> <a target="_blank" href="#"> Product name </a> </td>
-                            <td><?php //echo category($company["category"], "name_$lang_suffix"); ?> Category name</td>
-                            <td><?php __("since"); //echo " ".date_difference($company["added_date"]); ?> 10 minutes</td>
+                            <td> <i class="circle <?php echo $status; ?>"></i> <a> <?php echo $product["name_en"]; ?> </a> </td>
+                            <td><?php echo get_category($product["category"], "name_en") ?></td>
+                            <td><?php __("since"); echo " ".date_difference($product["time"]); ?></td>
                             <td>
                               <a href="#" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a>
-                              <a href="#" class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
+                              <a href="#editProduct" id="getAjaxPage" data-json='<?php echo $data_json; ?>' class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
                               <a href="#" class="btn btn-success"><i class="fas fa-eye"></i></a>
                             </td>
-                          </tr>
-
+                          </tr
+                        <?php }}else{ ?>
                           <tr>
-                            <td> <i class="circle active"></i> <a target="_blank" href="#"> Product name </a> </td>
-                            <td><?php //echo category($company["category"], "name_$lang_suffix"); ?> Category name</td>
-                            <td><?php __("since"); //echo " ".date_difference($company["added_date"]); ?> 10 minutes</td>
-                            <td>
-                              <a href="#" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a>
-                              <a href="#" class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
-                              <a href="#" class="btn btn-outline-secondary"><i class="fas fa-eye-slash"></i></a>
-                            </td>
+                            <td colspan="4"><?php __("no_products"); ?></td>
                           </tr>
+                        <?php } ?>
                         </tbody>
                       </table>
                     </div>
