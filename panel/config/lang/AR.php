@@ -234,5 +234,15 @@
     "photo_not_deleted" => "حدث مشكل أثناء محاولة حدف الصورة",
 
     "photos_added" => "تم إضافة الصور بنجاح",
+
+    "hide_product" => "إخفاء المنتج",
+    "activate_product" => "تفعيل المنج",
+    "hide_category" => "إخفاء القسم",
+    "activate_category" => "تفعيل القسم",
+
+    "product_hidden" => "تم إخفاء المنتج بنجاح",
+    "product_activated" => "تم تفعيل المنتج بنجاح",
+    "category_hidden" => "تم إخفاء القسم بنجاح",
+    "category_activated" => "تم تفعيل القسم بنجاح",
   ];
 ?>

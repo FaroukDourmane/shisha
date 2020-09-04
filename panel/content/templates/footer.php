@@ -30,7 +30,7 @@
 <script src="../admin/src/assets/js/shared/misc.js"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
-<script src="../admin/src/assets/js/demo_1/dashboard.js"></script>
+<script src="js/dashboard.js"></script>
 <!-- End custom js for this page-->
 
 <!-- MooTools for javascript -->

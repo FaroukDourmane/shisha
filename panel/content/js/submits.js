@@ -146,7 +146,8 @@ $(document).ready(function(){
 
 
   // When Deleting Item
-  $(document).on("click",".deleteItem",function(){
+  $(document).on("click",".deleteItem",function(e){
+    e.preventDefault();
 
     var actions = {
       "deleteArticle": "ajax/delete.php",
@@ -168,23 +169,150 @@ $(document).ready(function(){
       var id = $(this).attr("data-id");
       data.id = id;
 
-      $(".ajaxContainer").addClass("loading");
-      $(".loadingContainer").addClass("active");
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!',
+        showLoaderOnConfirm: true
+      }).then((result) => {
+        if (result.value) {
+          Swal.fire({
+           title: 'Please wait...',
+           allowOutsideClick: () => !Swal.isLoading()
+         });
+         Swal.showLoading();
 
-      $.post(actions[action],data)
-      .done(function(response){
-        response = $.parseJSON(response);
-        $(".ajaxContainer").removeClass("loading");
-        $(".loadingContainer").removeClass("active");
-        pushNotification(response.text,response.type);
+         $.post(actions[action],data)
+         .done(function(response){
+           response = $.parseJSON(response);
+           //$(".ajaxContainer").removeClass("loading");
+           //$(".loadingContainer").removeClass("active");
+           //pushNotification(response.text,response.type);
 
-        if (response.type == "success") {
-          $(".deletable."+id).remove();
+           if (response.type == "success") {
+             $(".deletable."+id).remove();
+
+             Swal.fire({
+              title: response.text,
+              icon: 'success'
+            });
+          }else{
+            Swal.fire({
+             text: response.text,
+             icon: 'error'
+           });
+          }
+
+         });
+
         }
-      });
+      })
+      //$(".ajaxContainer").addClass("loading");
+      //$(".loadingContainer").addClass("active");
     }
   });
 
+
+// Toggle product status
+$(document).on("click",".toggleProductStatus", function(e){
+  e.preventDefault();
+  var id = $(this).attr("id");
+  var btn = $(this);
+
+  Swal.fire({
+   title: 'Please wait...',
+   allowOutsideClick: () => !Swal.isLoading()
+ });
+ Swal.showLoading();
+
+ $.post("ajax/toggleStatus.php", {action: "toggleStatus",item: "product", id: id})
+ .done(function(data){
+   data = $.parseJSON(data);
+
+   if ( data.type == "success" )
+   {
+     Swal.fire({
+      title: data.text,
+      icon: "success"
+    });
+
+    if (data.process == "hidden")
+    {
+      $("tr.deletable."+id+" .circle").removeClass("active");
+      $("tr.deletable."+id+" .circle").addClass("disabled");
+      $(btn).removeClass("btn-outline-secondary");
+      $(btn).addClass("btn-success");
+      $(btn).find("i.fas").removeClass("fa-eye-slash");
+      $(btn).find("i.fas").addClass("fa-eye");
+    }else{
+      $("tr.deletable."+id+" .circle").removeClass("disabled");
+      $("tr.deletable."+id+" .circle").addClass("active");
+      $(btn).removeClass("btn-success");
+      $(btn).addClass("btn-outline-secondary");
+      $(btn).find("i.fas").removeClass("fa-eye");
+      $(btn).find("i.fas").addClass("fa-eye-slash");
+    }
+  }else{
+    Swal.fire({
+     text: data.text,
+     icon: "error"
+   });
+  }
+ });
+});
+
+
+// Toggle product status
+$(document).on("click",".toggleCategoryStatus", function(e){
+  e.preventDefault();
+  var id = $(this).attr("id");
+  var btn = $(this);
+
+  Swal.fire({
+   title: 'Please wait...',
+   allowOutsideClick: () => !Swal.isLoading()
+ });
+ Swal.showLoading();
+
+ $.post("ajax/toggleStatus.php", {action: "toggleStatus",item: "category", id: id})
+ .done(function(data){
+   data = $.parseJSON(data);
+
+   if ( data.type == "success" )
+   {
+     Swal.fire({
+      title: data.text,
+      icon: "success"
+    });
+
+    if (data.process == "hidden")
+    {
+      $("tr.deletable."+id+" .circle").removeClass("active");
+      $("tr.deletable."+id+" .circle").addClass("disabled");
+      $(btn).removeClass("btn-outline-secondary");
+      $(btn).addClass("btn-success");
+      $(btn).find("i.fas").removeClass("fa-eye-slash");
+      $(btn).find("i.fas").addClass("fa-eye");
+    }else{
+      $("tr.deletable."+id+" .circle").removeClass("disabled");
+      $("tr.deletable."+id+" .circle").addClass("active");
+      $(btn).removeClass("btn-success");
+      $(btn).addClass("btn-outline-secondary");
+      $(btn).find("i.fas").removeClass("fa-eye");
+      $(btn).find("i.fas").addClass("fa-eye-slash");
+    }
+  }else{
+    Swal.fire({
+     text: data.text,
+     icon: "error"
+   });
+  }
+ });
+});
 
 // Add a category
 $(document).on("click",".addCategory",function(e){

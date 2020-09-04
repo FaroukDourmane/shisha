@@ -234,5 +234,15 @@
     "photo_not_deleted" => "There was a problem while trying to delete the picture",
 
     "photos_added" => "Photo(s) was added successfully",
+
+    "hide_product" => "Hide product",
+    "activate_product" => "Activate product",
+    "hide_category" => "Hide category",
+    "activate_category" => "Activate category",
+
+    "product_hidden" => "Product hidden successfully",
+    "product_activated" => "Product activated successfully",
+    "category_hidden" => "Category hidden successfully",
+    "category_activated" => "Category activated successfully",
   ];
 ?>

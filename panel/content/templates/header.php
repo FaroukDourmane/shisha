@@ -55,6 +55,11 @@
     <link rel="stylesheet" href="../admin/src/assets/css/demo_1/style.css">
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="../admin/src/assets/images/favicon.png" />
+
+    <!-- Sweet alert 2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.17.2/dist/sweetalert2.min.js"></script>
+    <!-- END : Sweet alert 2 -->
   </head>
   <body>
     <div class="container-scroller">

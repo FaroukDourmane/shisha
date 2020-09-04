@@ -139,7 +139,7 @@ $hidden_categories = $Q->query("SELECT * FROM `categories` WHERE `status`='0' ")
                       <td>
                         <a href="#editCategory" id="getAjaxPage" data-json='<?php echo $data_json; ?>' class="btn btn-secondary"> <i class="fas fa-pen"></i> </a>
                         <a href="#" id="deleteCategory" data-id="<?php echo $fetch["id"]; ?>" class="btn btn-danger deleteItem"> <i class="fas fa-trash-alt"></i> </a>
-                        <?php echo ($fetch["status"] == 1) ? '<a href="#" class="btn btn-outline-secondary"><i class="fas fa-eye-slash"></i></a>' : '<a href="#" class="btn btn-success"><i class="fas fa-eye"></i></a>';  ?>
+                        <?php echo ($fetch["status"] == 1) ? '<a href="#" id="'.$id.'" class="btn btn-outline-secondary toggleCategoryStatus" data-toggle="tooltip" data-placement="bottom" title="'.__("hide_category", true).'"><i class="fas fa-eye-slash"></i></a>' : '<a href="#" id="'.$id.'" data-toggle="tooltip" data-placement="bottom" title="'.__("activate_category", true).'" class="btn toggleCategoryStatus btn-success"><i class="fas fa-eye"></i></a>';  ?>
                       </td>
                     </tr>
 

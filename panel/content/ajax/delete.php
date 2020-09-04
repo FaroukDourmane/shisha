@@ -62,6 +62,15 @@
 
     if ( $query->num_rows <= 0 ) {
 
+      $text = __("product_not_found", true);
+      $response = [
+        "type" => $type,
+        "text" => $text
+      ];
+
+      $json_response = json_encode($response);
+      echo $json_response;
+      exit;
     }
 
     $fetch = $query->fetch_assoc();
@@ -72,15 +81,15 @@
     {
       delete_file("../../../".$fetch["cover"]);
 
-      $galleries = $Q->query("SELECT * FROM `product_gallery` WHERE `product`='$id' ");
+      $galleries = $Q->query("SELECT * FROM `product_gallery` WHERE `product_id`='$id' ");
       if ( $galleries->num_rows > 0 )
       {
         while ( $image = $galleries->fetch_assoc() )
         {
-          delete_file("../../../".$image["path"]);
+          delete_file("../../../".$image["image_path"]);
         }
 
-        $delete_galleries = $Q->query("DELETE FROM `product_gallery` WHERE `product`='$id' ");
+        $delete_galleries = $Q->query("DELETE FROM `product_gallery` WHERE `product_id`='$id' ");
       }
 
       $type = "success";

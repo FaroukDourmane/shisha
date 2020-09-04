@@ -152,16 +152,16 @@ if ( !admin_logged() )
                             $data_json = [ 'id' => $product["id"] ];
                             $data_json = json_encode($data_json);
                         ?>
-                          <tr>
+                          <tr class="deletable <?php echo $product['id']; ?>">
                             <td> <i class="circle <?php echo $status; ?>"></i> <a> <?php echo $product["name_en"]; ?> </a> </td>
                             <td><?php echo get_category($product["category"], "name_en") ?></td>
                             <td><?php __("since"); echo " ".date_difference($product["time"]); ?></td>
                             <td>
-                              <a href="#" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> </a>
+                              <a href="#" class="btn btn-danger deleteItem" id="deleteProduct" data-id="<?php echo $product["id"]; ?>"> <i class="fas fa-trash-alt"></i> </a>
                               <a href="#editProduct" id="getAjaxPage" data-json='<?php echo $data_json; ?>' class="btn btn-primary"> <i class="fas fa-pen"></i> </a>
-                              <a href="#" class="btn btn-success"><i class="fas fa-eye"></i></a>
+                              <?php echo ($product["status"] == 1) ? '<a href="#" id="'.$product["id"].'" class="btn btn-outline-secondary toggleProductStatus" data-toggle="tooltip" data-placement="bottom" title="'.__("hide_product", true).'"><i class="fas fa-eye-slash"></i></a>' : '<a href="#" id="'.$product["id"].'" data-toggle="tooltip" data-placement="bottom" title="'.__("activate_product", true).'" class="btn btn-success toggleProductStatus"><i class="fas fa-eye"></i></a>';  ?>
                             </td>
-                          </tr
+                          </tr>
                         <?php }}else{ ?>
                           <tr>
                             <td colspan="4"><?php __("no_products"); ?></td>
