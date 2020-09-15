@@ -19,6 +19,7 @@
           <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
         </div>
       </div>
+
       <div class="buttons">
         <a href="#" class="right"> <img src="assets/svg/right-chevron.svg" /> </a>
         <a href="#" class="left"> <img src="assets/svg/left-chevron.svg" /> </a>
@@ -72,7 +73,7 @@
           <div class="wrapper">
             <div class="item">
               <div class="image">
-                <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
+              <img src="assets/img/shisha.png" alt="Kefo Kozalak Nargile Takımı" />
               </div>
               <div class="text">
                 <h1>Kefo Kozalak Nargile Takımı</h1>
